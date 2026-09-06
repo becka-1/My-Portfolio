@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import './Projects.css';
@@ -59,36 +59,40 @@ const PROJECTS = [
 
 /* ── Horizontal scroll carousel ── */
 const HorizontalCarousel = () => {
+  const [transformRange, setTransformRange] = useState(['20%', '-40%']);
+
+  useEffect(() => {
+    const updateRange = () => {
+      // Card rail is approx 1612px wide. We want to translate it enough so the 
+      // last card is fully visible on any screen size.
+      if (window.innerWidth <= 850) {
+        // On mobile, the rail is much wider than the screen, so we need to move it further
+        setTransformRange(['5%', '-1400px']); 
+      } else {
+        // Desktop default
+        setTransformRange(['20%', '-40%']);
+      }
+    };
+    updateRange();
+    window.addEventListener('resize', updateRange);
+    return () => window.removeEventListener('resize', updateRange);
+  }, []);
+
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
 
-  /* Maps scroll 0→1 to horizontal translation of the card rail.
-   * Rail = 5 × 300px cards + 4 × 28px gaps ≈ 1612px.
-   * Typical visible viewport ≈ 1240px → travel needed ≈ 372px ≈ 24% of rail. */
-  const x = useTransform(scrollYProgress, [0, 1], ['20%', '-40%']);
+  /* Maps scroll 0→1 to horizontal translation of the card rail. */
+  const x = useTransform(scrollYProgress, [0, 1], transformRange);
 
   return (
-    /*
-     * Tall container — 400 vh gives the scroll "room" so the sticky
-     * child stays pinned long enough to finish the horizontal animation.
-     * The ref MUST be on this element so useScroll tracks the right range.
-     */
     <section ref={targetRef} id="projects" className="projects-scroll-track">
-
-      {/* Sticky wrapper — stays glued to the viewport while parent scrolls */}
       <div className="projects-sticky">
-
-        {/* Heading lives INSIDE sticky so it scrolls with the panel */}
+        
         <div className="projects-heading">
           <h1 className="projects-title">PROJECTS</h1>
           <p className="projects-subtitle">A selection of things I've built</p>
         </div>
 
-        {/*
-         * Viewport clip + scrollbar container.
-         * overflow-x: auto shows the horizontal scrollbar;
-         * overflow-y: hidden keeps vertical clean.
-         */}
         <div className="projects-rail-viewport">
           <motion.div className="projects-rail" style={{ x }}>
             {PROJECTS.map((card) => (

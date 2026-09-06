@@ -73,3 +73,46 @@
   will-change: transform;
   padding: 12px 4px;
 }
+
+@media (max-width: 1100px) {
+  .projects-sticky {
+    padding: 0 50px;
+  }
+
+  .projects-rail-viewport {
+    mask-image: linear-gradient(to right,
+        transparent 0%,
+        black 4%,
+        black 96%,
+        transparent 100%);
+    -webkit-mask-image: linear-gradient(to right,
+        transparent 0%,
+        black 4%,
+        black 96%,
+        transparent 100%);
+  }
+}
+
+@media (max-width: 850px) {
+  .projects-sticky {
+    padding: 0 10px; /* Greatly reduce horizontal padding so cards are fully visible */
+  }
+
+  .projects-heading {
+    padding: 0 10px;
+  }
+  
+  .projects-title {
+    font-size: clamp(4rem, 15vw, 6rem);
+  }
+  
+  .projects-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  /* Remove side shadows entirely on mobile */
+  .projects-rail-viewport {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}

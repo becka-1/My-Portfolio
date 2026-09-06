@@ -1,0 +1,105 @@
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import ProjectCard from './ProjectCard';
+import './Projects.css';
+
+import project1 from '../assets/projects/project1.jpg';
+import project2 from '../assets/projects/project2.jpg';
+import project3 from '../assets/projects/project3.jpg';
+import project4 from '../assets/projects/project4.jpg';
+import project5 from '../assets/projects/project5.jpg';
+
+const PROJECTS = [
+  {
+    id: 1,
+    url: project1,
+    tag: 'Full-Stack · React · Node.js',
+    title: 'Portfolio Website',
+    description:
+      'A personal portfolio built with React and Framer Motion, featuring animated sections, a sticky scroll text reveal, and a horizontal project carousel.',
+    href: '#',
+  },
+  {
+    id: 2,
+    url: project2,
+    tag: 'Backend · Express · PostgreSQL',
+    title: 'REST API Platform',
+    description:
+      'A scalable REST API service with JWT authentication, role-based access control, and a PostgreSQL database, fully documented with Swagger.',
+    href: '#',
+  },
+  {
+    id: 3,
+    url: project3,
+    tag: 'AI · Python · TensorFlow',
+    title: 'Image Classifier',
+    description:
+      'A deep-learning image classifier trained on a custom dataset achieving 94 % accuracy, deployed as a Flask micro-service with a React front-end.',
+    href: '#',
+  },
+  {
+    id: 4,
+    url: project4,
+    tag: 'Full-Stack · Next.js · Prisma',
+    title: 'Task Manager App',
+    description:
+      'A real-time collaborative task manager with drag-and-drop boards, live notifications via WebSockets, and a Prisma/PostgreSQL backend.',
+    href: '#',
+  },
+  {
+    id: 5,
+    url: project5,
+    tag: 'Mobile · React Native',
+    title: 'Fitness Tracker',
+    description:
+      'A cross-platform fitness tracking app built with React Native, featuring workout logging, progress charts, and a custom REST API backend.',
+    href: '#',
+  },
+];
+
+/* ── Horizontal scroll carousel ── */
+const HorizontalCarousel = () => {
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: targetRef });
+
+  /* Maps scroll 0→1 to horizontal translation of the card rail.
+   * Rail = 5 × 300px cards + 4 × 28px gaps ≈ 1612px.
+   * Typical visible viewport ≈ 1240px → travel needed ≈ 372px ≈ 24% of rail. */
+  const x = useTransform(scrollYProgress, [0, 1], ['20%', '-40%']);
+
+  return (
+    /*
+     * Tall container — 400 vh gives the scroll "room" so the sticky
+     * child stays pinned long enough to finish the horizontal animation.
+     * The ref MUST be on this element so useScroll tracks the right range.
+     */
+    <section ref={targetRef} id="projects" className="projects-scroll-track">
+
+      {/* Sticky wrapper — stays glued to the viewport while parent scrolls */}
+      <div className="projects-sticky">
+
+        {/* Heading lives INSIDE sticky so it scrolls with the panel */}
+        <div className="projects-heading">
+          <h1 className="projects-title">PROJECTS</h1>
+          <p className="projects-subtitle">A selection of things I've built</p>
+        </div>
+
+        {/*
+         * Viewport clip + scrollbar container.
+         * overflow-x: auto shows the horizontal scrollbar;
+         * overflow-y: hidden keeps vertical clean.
+         */}
+        <div className="projects-rail-viewport">
+          <motion.div className="projects-rail" style={{ x }}>
+            {PROJECTS.map((card) => (
+              <ProjectCard key={card.id} card={card} />
+            ))}
+          </motion.div>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+export default HorizontalCarousel;

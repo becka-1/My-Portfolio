@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "steelfish";
+  src: url("./assets/fonts/steelfish rg.ttf");
+}
+
+:root {
+  --color-dominant: #eefcf3;
+  --color-secondary: #0f572a;
+  --color-accent: #00e755;
+
+  /* --color-dominant: #edf6f9;
+  --color-secondary: #006d77;
+  --color-accent: #83c5be; */
+
+  --bg-secondary: #E9F7EE;
+
+  /* Text colors */
+  --color-text-primary: #16301F;
+  /* Main headings */
+  --color-text-secondary: #526158;
+  /* Body text */
+  --color-text-muted: #7A887F;
+  /* Less important text */
+  --color-text-light: #A5B0A9;
+  /* Placeholder / disabled */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: black;
+}
+
+* {
+  scroll-behavior: smooth;
+}

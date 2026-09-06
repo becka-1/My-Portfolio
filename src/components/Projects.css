@@ -1,0 +1,74 @@
+/* ── Tall scroll track ── */
+.projects-scroll-track {
+  position: relative;
+  height: 300vh;
+  background: black;
+}
+
+/* ── Sticky panel ── */
+.projects-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  padding: 0 100px;
+  box-sizing: border-box;
+  gap: 32px;
+}
+
+/* ── Section heading block ── */
+.projects-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.projects-title {
+  margin: 0;
+  padding: 0;
+  font-family: steelfish, sans-serif;
+  font-size: 7.3rem;
+  line-height: 0.9;
+  letter-spacing: 5px;
+  color: var(--color-secondary);
+}
+
+.projects-subtitle {
+  margin: 0;
+  font-family: 'Lucida Sans Unicode', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* ── Rail viewport ── */
+.projects-rail-viewport {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%);
+}
+
+/* ── The moving card strip ── */
+.projects-rail {
+  display: flex;
+  gap: 28px;
+  will-change: transform;
+  padding: 12px 4px;
+}

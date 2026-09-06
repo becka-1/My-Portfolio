@@ -1,0 +1,65 @@
+/* ── Navbar container ── */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 60px;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+/* ── Logo ── */
+.navbar-logo {
+    font-family: 'Lucida Sans Unicode', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: white;
+    cursor: default;
+}
+
+/* ── Links group ── */
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* ── Individual link ── */
+.nav-link {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: 'Lucida Sans Unicode', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+/* Top and bottom layers for the flip effect */
+.nav-link-top,
+.nav-link-bottom {
+    display: block;
+}
+
+.nav-link-bottom {
+    position: absolute;
+    inset: 0;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Each letter */
+.nav-link-span {
+    display: inline-block;
+}

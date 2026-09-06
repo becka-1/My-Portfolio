@@ -1,0 +1,337 @@
+/* ── Design tokens (green palette) ── */
+.contact-section {
+  --c-ink: var(--color-text-primary);
+  --c-muted: var(--color-text-secondary);
+  --c-line: rgba(15, 87, 42, 0.12);
+  --c-panel: var(--bg-secondary);
+  --c-label: var(--color-text-muted);
+
+  min-height: 100vh;
+  background: var(--color-dominant);
+  color: var(--c-ink);
+  padding: 80px 24px 40px;
+  font-family: 'Segoe UI', 'Lucida Sans Unicode', Arial, sans-serif;
+}
+
+.contact-shell {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+/* ── Centered heading ── */
+.contact-heading {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 72px;
+}
+
+.contact-eyebrow {
+  margin: 0 0 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-label);
+}
+
+.contact-heading h1 {
+  color: var(--color-secondary);
+  font-family: steelfish, 'Arial Black', sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 0.95;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* italic accent word */
+.contact-heading h1 span {
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.contact-intro {
+  color: var(--c-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 24px auto 0;
+  max-width: 460px;
+}
+
+/* ── Two-column grid ── */
+.contact-grid {
+  border-top: 1px solid var(--c-line);
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(48px, 9vw, 120px);
+  padding: 54px 0 74px;
+}
+
+/* ── Left: info column ── */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 420px;
+}
+
+.contact-details {
+  display: grid;
+  gap: 26px;
+}
+
+.contact-detail {
+  align-items: flex-start;
+  display: flex;
+  gap: 16px;
+}
+
+.contact-detail-icon {
+  align-items: center;
+  border: 1px solid var(--c-line);
+  color: var(--color-secondary);
+  display: flex;
+  height: 38px;
+  width: 38px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-detail-label {
+  color: var(--c-label);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+
+.contact-detail p:not(.contact-detail-label),
+.contact-detail a {
+  color: var(--c-ink);
+  font-size: 0.93rem;
+  margin: 0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-detail a:hover {
+  color: var(--color-secondary);
+}
+
+/* ── Socials ── */
+.contact-socials {
+  margin-top: 48px;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+  width: fit-content;
+}
+
+.social-link {
+  align-items: center;
+  color: var(--color-text-secondary);
+  display: grid;
+  grid-template-columns: 20px 88px 14px;
+  gap: 12px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  width: fit-content;
+}
+
+.social-link span {
+  font-size: 0.88rem;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+
+.social-arrow {
+  color: var(--color-text-muted);
+  display: block;
+  transition: color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-link:hover {
+  color: var(--color-secondary);
+}
+
+.social-link:hover .social-arrow {
+  color: var(--color-secondary);
+  transform: translate(3px, -3px);
+}
+
+/* ── Right: form column ── */
+.contact-form {
+  background: var(--c-panel);
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid var(--c-line);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.contact-form label span {
+  color: var(--c-label);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--c-line);
+  border-radius: 0;
+  color: var(--c-ink);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  outline: none;
+  padding: 8px 0 12px;
+  resize: vertical;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--color-text-light);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-secondary);
+}
+
+/* Submit button */
+.contact-submit {
+  align-items: center;
+  background: var(--color-accent);
+  border: 0;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 14px 28px;
+  transition: background 0.2s ease, opacity 0.2s ease;
+  min-width: 160px;
+}
+
+.contact-submit:hover {
+  opacity: 0.85;
+}
+
+.contact-btn-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Footer bar ── */
+.contact-footer {
+  border-top: 1px solid var(--c-line);
+  color: var(--c-label);
+  display: flex;
+  font-size: 10px;
+  font-weight: 600;
+  justify-content: space-between;
+  letter-spacing: 0.1em;
+  padding-top: 18px;
+  text-transform: uppercase;
+}
+
+.contact-status {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+}
+
+.contact-status i {
+  background: var(--color-accent);
+  border-radius: 50%;
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+  .contact-section {
+    padding: 52px 20px 28px;
+  }
+
+  .contact-heading {
+    margin-bottom: 48px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 38px 0 52px;
+  }
+
+  .contact-info {
+    min-height: auto;
+  }
+
+  .contact-socials {
+    margin-top: 40px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .contact-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-heading h1 {
+    font-size: 2.8rem;
+  }
+}

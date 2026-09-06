@@ -1,25 +1,26 @@
 /* ── Scroll container ── */
 .about-scroll-container {
-  height: 300vh;
   position: relative;
   background: var(--bg-secondary);
+  padding: 80px 0 160px 0;
+  box-sizing: border-box;
+  scroll-margin-top: 80px;
 }
 
-/* ── Sticky wrapper ── */
+/* ── Content wrapper ── */
 .about-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  position: relative;
   display: flex;
   align-items: center;
   background: var(--bg-secondary);
+  width: 100%;
 }
 
 /* ── Section layout ── */
 .about-section {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   color: var(--color-accent);
   padding: 0 100px;
@@ -27,42 +28,70 @@
   gap: 60px;
 }
 
+/* Sticky on large screens with enough height */
+@media (min-width: 851px) and (min-height: 600px) {
+  .about-scroll-container {
+    height: 300vh;
+    padding: 0;
+  }
+
+  .about-sticky {
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+  }
+
+  .about-section {
+    align-items: center;
+  }
+}
+
 /* ── Left: ABOUT ME title block ── */
 .title-container {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  font-size: 7.3rem;
+  width: max-content;
+  font-size: clamp(4rem, 8vw, 7.3rem);
   line-height: 0.9;
-  letter-spacing: 5px;
+  letter-spacing: clamp(2px, 0.5vw, 5px);
   font-family: steelfish;
   flex-shrink: 0;
   color: var(--color-secondary);
 }
 
-.title-about,
-.title-me {
+.title-about {
   margin: 0;
   padding: 0;
+  white-space: nowrap;
 }
 
 .title-me {
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
+  width: 100%;
+  gap: clamp(4px, 1vw, 8px); /* Reduced gap allows the image to stretch further to the left */
 }
 
 /* ── Profile image ── */
 .image-container {
-  display: inline-block;
+  flex: 1;
   position: relative;
   overflow: hidden;
-  width: 100%;
-  margin-top: 19px;
+  height: 0.86em;
+  /* Increased to perfectly match text height */
+  margin-top: 0;
+  transform: translateY(0.04em);
+  /* Adjusted visual bump based on new height */
 }
 
 .image-container img {
-  height: 199px;
+  height: 100%;
   width: 100%;
   display: block;
+  object-fit: cover;
+  object-position: center 20%;
 }
 
 .overlay {
@@ -78,14 +107,14 @@
   display: flex;
   flex-direction: column;
   font-family: 'Lucida Sans Unicode';
-  gap: 24px;
+  gap: 28px;
 }
 
 /* Paragraph wrapping words */
 .about-reveal-paragraph {
   display: flex;
   flex-wrap: wrap;
-  font-size: clamp(14px, 1.3vw, 20px);
+  font-size: clamp(14px, 1.5vw, 20px);
   line-height: 1.7;
   color: var(--color-text-primary);
   margin: 0;
@@ -119,4 +148,51 @@
   text-transform: uppercase;
   color: var(--color-text-secondary);
   font-family: 'Lucida Sans Unicode';
+}
+
+/* ── Media Queries ── */
+@media (max-width: 1100px) {
+  .about-section {
+    padding: 0 50px;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 850px) {
+  .about-scroll-container {
+    padding: 80px 0 120px 0;
+  }
+
+  .about-section {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0 30px;
+    gap: 32px;
+  }
+
+  .title-container {
+    position: static;
+    font-size: clamp(5rem, 18vw, 7.3rem);
+  }
+
+  .text-container {
+    width: 100%;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-scroll-container {
+    padding: 60px 0 90px 0;
+  }
+
+  .about-section {
+    padding: 0 20px;
+    gap: 24px;
+  }
+
+  .title-container {
+    font-size: clamp(4.5rem, 22vw, 7.3rem);
+  }
 }

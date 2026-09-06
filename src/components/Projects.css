@@ -3,6 +3,7 @@
   position: relative;
   height: 300vh;
   background: black;
+  scroll-margin-top: 80px;
 }
 
 /* ── Sticky panel ── */

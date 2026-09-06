@@ -10,6 +10,7 @@
   background: var(--color-dominant);
   color: var(--c-ink);
   padding: 80px 24px 40px;
+  scroll-margin-top: 80px;
   font-family: 'Segoe UI', 'Lucida Sans Unicode', Arial, sans-serif;
 }
 

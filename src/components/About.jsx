@@ -1,5 +1,5 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Profile from '../assets/Profile Photo/profile.jpg';
 import './About.css';
 
@@ -7,8 +7,7 @@ import './About.css';
 const BIO = "Dedicated Software Engineering student with 2+ years of experience in web development and strong interest in software development, full-stack web applications and artificial intelligence. I build end-to-end web applications, from designing responsive and user-friendly interfaces to developing backend APIs and managing databases.";
 const SKILLS = "Python · JavaScript · C++ · SQL · React · Node.js · Express.js · REST APIs · PostgreSQL · HTML · CSS · Tailwind · Git";
 
-/* ── Character-level opacity reveal driven by scroll progress ── */
-/* Explicit interpolation — no extrapolation, past chars always stay at 1 */
+/* ── Character-level opacity reveal driven by natural scroll progress ── */
 const Char = ({ children, progress, range }) => {
   const opacity = useTransform(progress, (p) => {
     if (p <= range[0]) return 0;
@@ -61,17 +60,36 @@ const RevealText = ({ text, progress, startOffset = 0, endOffset = 1 }) => {
 
 /* ── About Section ── */
 const About = () => {
-  const containerRef = useRef(null);
+  const [isStickyCapable, setIsStickyCapable] = useState(true);
 
-  const { scrollYProgress } = useScroll({
+  useEffect(() => {
+    const checkMedia = () => {
+      setIsStickyCapable(
+        window.innerWidth > 850 && window.innerHeight >= 600
+      );
+    };
+    checkMedia();
+    window.addEventListener('resize', checkMedia);
+    return () => window.removeEventListener('resize', checkMedia);
+  }, []);
+
+  const containerRef = useRef(null);
+  const textContainerRef = useRef(null);
+
+  const { scrollYProgress: desktopProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end'],
+    offset: ['start 80px', 'end end'],
   });
 
+  const { scrollYProgress: mobileProgress } = useScroll({
+    target: textContainerRef,
+    offset: ['start 0.85', 'start 0.4'],
+  });
+
+  const scrollYProgress = isStickyCapable ? desktopProgress : mobileProgress;
+
   return (
-    /* Tall container — gives scroll "room" for the sticky effect */
     <div ref={containerRef} className="about-scroll-container" id="about">
-      {/* Sticky wrapper — locks content in viewport while scrolling */}
       <div className="about-sticky">
         <section className="about-section">
           {/* Left: ABOUT ME title + image */}
@@ -92,23 +110,23 @@ const About = () => {
             </h1>
           </div>
 
-          {/* Right: scroll-driven character reveal */}
-          <div className="text-container">
+          {/* Right: sequential, continuous scroll-driven character reveal */}
+          <div ref={textContainerRef} className="text-container">
             <p className="about-skills-label">ABOUT ME</p>
-            {/* Bio text reveals from 0% → 70% of scroll progress */}
+            {/* Bio text reveals first: 0% → 68% */}
             <RevealText
               text={BIO}
               progress={scrollYProgress}
               startOffset={0}
-              endOffset={0.7}
+              endOffset={0.68}
             />
 
-            {/* Skills reveal from 70% → 100% */}
+            {/* Skills reveal continuously after Bio completes: 70% → 100% */}
             <p className="about-skills-label">Skills &amp; Technologies</p>
             <RevealText
               text={SKILLS}
               progress={scrollYProgress}
-              startOffset={0.72}
+              startOffset={0.70}
               endOffset={1}
             />
           </div>

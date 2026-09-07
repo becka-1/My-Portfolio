@@ -103,7 +103,7 @@ const About = () => {
                   className="overlay"
                   initial={{ x: '0%' }}
                   whileInView={{ x: '100%' }}
-                  viewport={{ once: true, margin: "0px 0px -20% 0px" }}
+                  viewport={{ once: false, margin: "0px 0px -30% 0px" }}
                   transition={{ duration: 0.9, ease: [0.77, 0, 0.175, 1] }}
                 />
               </div>

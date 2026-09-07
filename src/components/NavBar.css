@@ -95,7 +95,7 @@
         left: 0;
         width: 100%;
         height: 100vh;
-        background: var(--color-secondary);
+        background: var(--color-accent);
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -115,5 +115,10 @@
     .navbar-links.mobile-only .nav-link {
         font-size: 2.5rem; /* Large touch targets */
         overflow: hidden; /* For the entrance stagger reveal */
+        color: black;
+    }
+
+    .navbar-links.mobile-only .nav-link-bottom {
+        color: rgba(0, 0, 0, 0.6);
     }
 }

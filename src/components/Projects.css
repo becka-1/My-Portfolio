@@ -2,8 +2,9 @@
 .projects-scroll-track {
   position: relative;
   height: 300vh;
-  background: black;
+  background: var(--bg-secondary);
   scroll-margin-top: 80px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* ── Sticky panel ── */

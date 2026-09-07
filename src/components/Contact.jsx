@@ -166,7 +166,7 @@ export default function Contact() {
         <footer className="contact-footer">
           <span>Available for select freelance projects</span>
           <span className="contact-status">
-            <i aria-hidden="true" />
+            {/* <i aria-hidden="true" /> */}
             Currently accepting inquiries
           </span>
         </footer>

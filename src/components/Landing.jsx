@@ -9,7 +9,7 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      delayChildren: 2.5,
+      delayChildren: 3.0,
       staggerChildren: 0.04,
     },
   },
@@ -38,7 +38,7 @@ const fadeUp = {
   }),
 };
 
-const TEXT = "Software Developer";
+const TEXT = "SOFTWARE DEVELOPER";
 const LETTERS = Array.from(TEXT);
 
 const Landing = () => {
@@ -72,6 +72,13 @@ const Landing = () => {
     };
   }, []);
 
+  const scrollToSection = (id) => {
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="landing-container" id="home">
       {/* Two-column hero layout */}
@@ -83,7 +90,7 @@ const Landing = () => {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={3}
+            custom={3.5}
           >
             <img
               ref={waveRef}
@@ -116,7 +123,7 @@ const Landing = () => {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={3.5}
+            custom={4}
           >
             I build full-stack applications with a focus on performance and scalability.
           </motion.p>
@@ -126,13 +133,23 @@ const Landing = () => {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={4}
+            custom={4.5}
           >
             <MagneticButton>
-              <button className="btn-primary">View my projects</button>
+              <button
+                className="btn-primary"
+                onClick={() => scrollToSection('projects')}
+              >
+                View my projects
+              </button>
             </MagneticButton>
             <MagneticButton>
-              <button className="btn-secondary">Get in touch</button>
+              <button
+                className="btn-secondary"
+                onClick={() => scrollToSection('contact')}
+              >
+                Get in touch
+              </button>
             </MagneticButton>
           </motion.div>
         </div>
@@ -143,7 +160,7 @@ const Landing = () => {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={3.2}
+          custom={3.7}
         >
           {/* Add your <img> here */}
           <img src={Profile} alt="" />

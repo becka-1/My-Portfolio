@@ -83,7 +83,7 @@ const About = () => {
 
   const { scrollYProgress: mobileProgress } = useScroll({
     target: textContainerRef,
-    offset: ['start 0.85', 'start 0.4'],
+    offset: ['start 0.85', 'start 0.01'],
   });
 
   const scrollYProgress = isStickyCapable ? desktopProgress : mobileProgress;

@@ -67,7 +67,7 @@ const HorizontalCarousel = () => {
       // last card is fully visible on any screen size.
       if (window.innerWidth <= 850) {
         // On mobile, the rail is much wider than the screen, so we need to move it further
-        setTransformRange(['5%', '-1400px']); 
+        setTransformRange(['5%', '-1400px']);
       } else {
         // Desktop default
         setTransformRange(['20%', '-40%']);
@@ -87,7 +87,7 @@ const HorizontalCarousel = () => {
   return (
     <section ref={targetRef} id="projects" className="projects-scroll-track">
       <div className="projects-sticky">
-        
+
         <div className="projects-heading">
           <h1 className="projects-title">PROJECTS</h1>
           <p className="projects-subtitle">A selection of things I've built</p>
@@ -99,6 +99,24 @@ const HorizontalCarousel = () => {
               <ProjectCard key={card.id} card={card} />
             ))}
           </motion.div>
+        </div>
+
+        <div className="projects-scroll-indicator">
+          <span className="indicator-text">Keep scrolling</span>
+          <div className="indicator-mouse">
+            <svg width="14" height="20" viewBox="0 0 24 32" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="4" y="2" width="16" height="28" rx="8"></rect>
+              <motion.circle
+                cx="12"
+                cy="8"
+                r="2.5"
+                fill="currentColor"
+                stroke="none"
+                animate={{ y: [0, 12, 0], opacity: [1, 0, 1] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              />
+            </svg>
+          </div>
         </div>
 
       </div>

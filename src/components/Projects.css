@@ -96,24 +96,47 @@
 
 @media (max-width: 850px) {
   .projects-sticky {
-    padding: 0 10px; /* Greatly reduce horizontal padding so cards are fully visible */
+    padding: 0 10px;
+    /* Greatly reduce horizontal padding so cards are fully visible */
   }
 
   .projects-heading {
     padding: 0 10px;
   }
-  
+
   .projects-title {
     font-size: clamp(4rem, 15vw, 6rem);
   }
-  
+
   .projects-subtitle {
     font-size: 0.8rem;
   }
-  
+
   /* Remove side shadows entirely on mobile */
   .projects-rail-viewport {
     mask-image: none;
     -webkit-mask-image: none;
   }
+}
+
+/* ── Scroll indicator ── */
+.projects-scroll-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--color-text-secondary);
+  font-family: 'Lucida Sans Unicode', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.indicator-mouse {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  opacity: 0.6;
+  transform: translateY(-1px);
 }

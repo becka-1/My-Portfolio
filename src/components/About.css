@@ -26,6 +26,8 @@
   padding: 0 100px;
   box-sizing: border-box;
   gap: 60px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* Sticky on large screens with enough height */

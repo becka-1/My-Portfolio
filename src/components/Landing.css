@@ -22,6 +22,10 @@
   justify-content: center;
   gap: clamp(60px, 10vw, 200px);
   padding: 100px clamp(40px, 8vw, 100px) 0px clamp(40px, 8vw, 100px);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ── Left column ── */

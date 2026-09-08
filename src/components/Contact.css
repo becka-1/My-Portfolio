@@ -137,12 +137,12 @@
 .social-link {
   align-items: center;
   color: var(--color-text-secondary);
-  display: grid;
-  grid-template-columns: 20px 88px 14px;
-  gap: 12px;
+  display: inline-flex;
+  gap: 10px;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.15s ease, opacity 0.15s ease;
   width: fit-content;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .social-link span {
@@ -160,16 +160,46 @@
 .social-arrow {
   color: var(--color-text-muted);
   display: block;
+  margin-left: -4px;
   transition: color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.social-link:hover {
-  color: var(--color-secondary);
+/* Mouse hover effects */
+@media (hover: hover) {
+  .social-link:hover {
+    color: var(--color-secondary);
+  }
+
+  .social-link:hover .social-arrow {
+    color: var(--color-secondary);
+    transform: translate(3px, -3px);
+  }
 }
 
-.social-link:hover .social-arrow {
+/* Touchscreens where hover is not directly available */
+@media (hover: none) {
+  .social-link:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .social-link:hover .social-arrow {
+    color: var(--color-text-muted);
+    transform: none;
+  }
+}
+
+/* Click/press effect for touch and mouse */
+.social-link:active {
+  transform: scale(0.95);
   color: var(--color-secondary);
-  transform: translate(3px, -3px);
+  opacity: 0.85;
+  transition: transform 0.08s ease, color 0.08s ease, opacity 0.08s ease;
+}
+
+.social-link:active .social-arrow {
+  color: var(--color-secondary);
+  transform: translate(2px, -2px);
+  transition: transform 0.08s ease, color 0.08s ease;
 }
 
 /* ── Right: form column ── */

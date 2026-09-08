@@ -2,9 +2,8 @@
 .projects-scroll-track {
   position: relative;
   height: 300vh;
-  background: var(--bg-secondary);
+  background-color: var(--color-dominant);
   scroll-margin-top: 80px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* ── Sticky panel ── */
@@ -16,7 +15,13 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  background: var(--bg-secondary);
+  background-color: var(--color-dominant);
+  background-image:
+    radial-gradient(ellipse at center, transparent 30%, var(--color-dominant) 90%),
+    linear-gradient(rgba(15, 87, 42, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 87, 42, 0.12) 1px, transparent 1px);
+  background-size: 100% 100%, 70px 70px, 70px 70px;
+  background-position: center center;
   padding: 0 100px;
   box-sizing: border-box;
   gap: 32px;

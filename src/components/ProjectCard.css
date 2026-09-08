@@ -4,7 +4,7 @@
   width: 300px;
   height: 360px;
   flex-shrink: 0;
-  border-radius: 20px;
+  border-radius: 5px;
   overflow: hidden;
   background: var(--color-dominant);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -30,14 +30,14 @@
 }
 
 /* Gradient overlay */
-.project-card__image-overlay {
+/* .project-card__image-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
       transparent 30%,
       rgba(0, 0, 0, 0.55) 100%);
   pointer-events: none;
-}
+} */
 
 /* ── Text content area ── */
 .project-card__content {
@@ -82,6 +82,15 @@
   -webkit-box-orient: vertical;
 }
 
+/* ── Actions bottom bar ── */
+.project-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
 /* CTA arrow link */
 .project-card__cta {
   display: inline-flex;
@@ -94,7 +103,36 @@
   text-transform: uppercase;
   color: var(--color-secondary);
   text-decoration: none;
-  margin-top: 2px;
-  align-self: flex-start;
   transition: color 0.2s ease;
+}
+
+/* GitHub icon link */
+.project-card__github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.project-card__github-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+@media (hover: hover) {
+  .project-card__github:hover {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+}
+
+.project-card__github:active {
+  transform: scale(0.92);
 }

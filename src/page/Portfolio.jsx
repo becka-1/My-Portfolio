@@ -4,6 +4,7 @@ import Landing from '../components/Landing';
 import About from '../components/About';
 import Projects from '../components/Projects';
 import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 
 /**
  * Portfolio — main page assembler.
@@ -25,6 +26,7 @@ const Portfolio = () => {
       <About />
       <Projects />
       <Contact />
+      <Footer />
 
       {/* ── Add new sections below as you build them ── */}
       {/* <About /> */}

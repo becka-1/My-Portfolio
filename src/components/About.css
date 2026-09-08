@@ -71,7 +71,8 @@
   display: flex;
   align-items: center;
   width: 100%;
-  gap: clamp(4px, 1vw, 8px); /* Reduced gap allows the image to stretch further to the left */
+  gap: clamp(4px, 1vw, 8px);
+  /* Reduced gap allows the image to stretch further to the left */
 }
 
 /* ── Profile image ── */
@@ -90,7 +91,7 @@
   height: 100%;
   width: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center 20%;
 }
 

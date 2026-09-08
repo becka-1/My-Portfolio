@@ -1,7 +1,7 @@
 import { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import MagneticButton from './MagneticButton';
-import Profile from '../assets/Profile Photo/profile.jpg';
+import Profile from '../assets/Profile Photo/profile.png';
 import WaveIcon from '../assets/icons/wave-test.svg';
 import './Landing.css';
 
@@ -9,7 +9,7 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      delayChildren: 3.0,
+      delayChildren: 3.5,
       staggerChildren: 0.04,
     },
   },

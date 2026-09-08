@@ -20,7 +20,7 @@ const FlipLink = ({ children, href, isActive, onClick, delay = 0 }) => {
   const handleClick = (e) => {
     e.preventDefault();
     setIsTapped(true);
-    
+
     // Allow animation to play before closing and scrolling
     setTimeout(() => {
       const id = href.replace('#', '');
@@ -93,7 +93,7 @@ const MobileMenuLink = ({ children, href, isActive, onClick, index }) => {
   const handleClick = (e) => {
     e.preventDefault();
     setIsTapped(true);
-    
+
     setTimeout(() => {
       const id = href.replace('#', '');
       const target = document.getElementById(id);
@@ -102,7 +102,7 @@ const MobileMenuLink = ({ children, href, isActive, onClick, index }) => {
       }
       if (onClick) onClick();
       setIsTapped(false);
-    }, 400); 
+    }, 400);
   };
 
   const containerVariants = {
@@ -117,17 +117,17 @@ const MobileMenuLink = ({ children, href, isActive, onClick, index }) => {
 
   const topLetterVariants = {
     hidden: { y: '100%' },
-    visible: { 
-      y: isActive ? '-100%' : 0, 
-      transition: { type: 'spring', damping: 14, stiffness: 90 } 
+    visible: {
+      y: isActive ? '-100%' : 0,
+      transition: { type: 'spring', damping: 14, stiffness: 90 }
     }
   };
 
   const bottomLetterVariants = {
     hidden: { y: '100%' },
-    visible: { 
-      y: isActive ? 0 : '100%', 
-      transition: { type: 'spring', damping: 14, stiffness: 90 } 
+    visible: {
+      y: isActive ? 0 : '100%',
+      transition: { type: 'spring', damping: 14, stiffness: 90 }
     }
   };
 
@@ -145,8 +145,8 @@ const MobileMenuLink = ({ children, href, isActive, onClick, index }) => {
           <motion.span
             key={i}
             className="nav-link-span"
-            variants={isTapped ? undefined : topLetterVariants} 
-            animate={isTapped ? { y: "-100%" } : undefined} 
+            variants={isTapped ? undefined : topLetterVariants}
+            animate={isTapped ? { y: "-100%" } : undefined}
             transition={isTapped ? { duration: DURATION, ease: "easeInOut", delay: STAGGER * i } : undefined}
           >
             {l}
@@ -176,26 +176,34 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-50% 0px -50% 0px" }
-    );
+    const handleScroll = () => {
+      const centerY = window.innerHeight / 2;
+      let newActiveId = "";
 
-    setTimeout(() => {
-      NAV_LINKS.forEach((link) => {
-        const id = link.href.replace("#", "");
+      // Iterate backwards so that deeper sections take priority if they overlap the center
+      for (let i = NAV_LINKS.length - 1; i >= 0; i--) {
+        const id = NAV_LINKS[i].href.replace("#", "");
         const element = document.getElementById(id);
-        if (element) observer.observe(element);
-      });
-    }, 100);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Check if this section spans across the middle of the viewport
+          if (rect.top <= centerY && rect.bottom >= centerY) {
+            newActiveId = id;
+            break;
+          }
+        }
+      }
 
-    return () => observer.disconnect();
+      if (newActiveId) {
+        setActiveSection(newActiveId);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Run once after initial render to set the correct active link
+    setTimeout(handleScroll, 100);
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -212,15 +220,15 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo"><MagneticButton>Bereket</MagneticButton></div>
-      
+
       {/* Desktop Links */}
       <div className="navbar-links desktop-only">
         {NAV_LINKS.map((link) => {
           const isActive = activeSection === link.href.replace("#", "");
           return (
-            <FlipLink 
-              key={link.label} 
-              href={link.href} 
+            <FlipLink
+              key={link.label}
+              href={link.href}
               isActive={isActive}
             >
               {link.label}
@@ -234,9 +242,9 @@ const Navbar = () => {
         {isMenuOpen && NAV_LINKS.map((link, i) => {
           const isActive = activeSection === link.href.replace("#", "");
           return (
-            <MobileMenuLink 
-              key={link.label} 
-              href={link.href} 
+            <MobileMenuLink
+              key={link.label}
+              href={link.href}
               isActive={isActive}
               index={i}
               onClick={() => setIsMenuOpen(false)}
@@ -247,8 +255,10 @@ const Navbar = () => {
         })}
       </div>
 
-      <div className="mobile-menu-btn">
-        <Hamburger isOpen={isMenuOpen} toggle={() => setIsMenuOpen(!isMenuOpen)} />
+      <div className="navbar-controls">
+        <div className="mobile-menu-btn">
+          <Hamburger isOpen={isMenuOpen} toggle={() => setIsMenuOpen(!isMenuOpen)} />
+        </div>
       </div>
     </nav>
   );

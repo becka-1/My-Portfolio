@@ -13,9 +13,9 @@ import TelegramIcon from '../assets/icons/Telegram.svg';
 import './Contact.css';
 
 const socials = [
-  { label: 'GitHub', href: 'https://github.com/', icon: GithubIcon },
-  { label: 'LinkedIn', href: 'https://linkedin.com/', icon: LinkedInIcon },
-  { label: 'Telegram', href: 'https://telegram.com/', icon: TelegramIcon },
+  { label: 'GitHub', href: 'https://github.com/becka-1', icon: GithubIcon },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/bereket-melaku/', icon: LinkedInIcon },
+  { label: 'Telegram', href: 'https://t.me/Bereketme_10', icon: TelegramIcon },
 ];
 
 const details = [
@@ -33,11 +33,44 @@ const fadeUp = (delay = 0) => ({
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.target);
+
+    // ⚠️ Replace this with your actual Web3Forms access key
+    formData.append("access_key", "806038f9-a3e6-4482-bae8-e26770f53f25");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSent(true);
+        e.target.reset();
+        setTimeout(() => setSent(false), 3000);
+      } else {
+        console.error("Form submission failed", data);
+      }
+    } catch (error) {
+      console.error("Error submitting form", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -118,9 +151,13 @@ export default function Contact() {
                 <input id="contact-email" type="email" name="email" placeholder="jane@company.com" required />
               </label>
             </div>
+
+            {/* Hidden subject for the email title */}
+            <input type="hidden" name="subject" value="New message from your Portfolio" />
+
             <label>
               <span>What can I help with?</span>
-              <input id="contact-subject" type="text" name="subject" placeholder="A new digital experience" required />
+              <input id="contact-subject" type="text" name="Project_Details" placeholder="A new digital experience" required />
             </label>
             <label>
               <span>Tell me a little more</span>

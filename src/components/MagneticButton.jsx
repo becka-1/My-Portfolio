@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useId } from 'react';
+import React, { useRef, useEffect, useId, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 /**
@@ -75,6 +75,8 @@ function onGlobalMouseMove(e) {
 const MagneticButton = ({ children, strength = 0.5, padding = 50, releasePad = 80 }) => {
   const id = useId();
   const ref = useRef(null);
+  
+  const [isHoverable, setIsHoverable] = useState(true);
 
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
@@ -83,6 +85,17 @@ const MagneticButton = ({ children, strength = 0.5, padding = 50, releasePad = 8
   const y = useSpring(rawY, springConfig);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setIsHoverable(mediaQuery.matches);
+
+    const handler = (e) => setIsHoverable(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
+  useEffect(() => {
+    if (!isHoverable) return;
+
     // Register this button in the shared registry
     registry.set(id, { ref, rawX, rawY, strength, padding, releasePad, attracted: false });
 
@@ -99,7 +112,11 @@ const MagneticButton = ({ children, strength = 0.5, padding = 50, releasePad = 8
         globalListenerAttached = false;
       }
     };
-  }, [id, rawX, rawY, strength, padding, releasePad]);
+  }, [id, rawX, rawY, strength, padding, releasePad, isHoverable]);
+
+  if (!isHoverable) {
+    return <div style={{ display: 'inline-block' }}>{children}</div>;
+  }
 
   return (
     <motion.div ref={ref} style={{ x, y, display: 'inline-block' }}>

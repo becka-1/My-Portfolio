@@ -64,6 +64,14 @@
     display: inline-block;
 }
 
+/* ── Controls (Mobile Menu) ── */
+.navbar-controls {
+    display: none;
+    align-items: center;
+    gap: 16px;
+    z-index: 101;
+}
+
 /* ── Mobile menu button (Hidden on desktop) ── */
 .mobile-menu-btn {
     display: none;
@@ -81,6 +89,10 @@
 
     .desktop-only {
         display: none !important;
+    }
+
+    .navbar-controls {
+        display: flex;
     }
 
     .mobile-menu-btn {
@@ -101,7 +113,7 @@
         align-items: center;
         gap: 40px;
         z-index: 99;
-        
+
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -113,8 +125,10 @@
     }
 
     .navbar-links.mobile-only .nav-link {
-        font-size: 2.5rem; /* Large touch targets */
-        overflow: hidden; /* For the entrance stagger reveal */
+        font-size: 2.5rem;
+        /* Large touch targets */
+        overflow: hidden;
+        /* For the entrance stagger reveal */
         color: black;
     }
 

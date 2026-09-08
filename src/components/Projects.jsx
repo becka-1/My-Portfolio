@@ -18,6 +18,7 @@ const PROJECTS = [
     description:
       'A personal portfolio built with React and Framer Motion, featuring animated sections, a sticky scroll text reveal, and a horizontal project carousel.',
     href: '#',
+    github: 'https://github.com/',
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ const PROJECTS = [
     description:
       'A scalable REST API service with JWT authentication, role-based access control, and a PostgreSQL database, fully documented with Swagger.',
     href: '#',
+    github: 'https://github.com/',
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ const PROJECTS = [
     description:
       'A deep-learning image classifier trained on a custom dataset achieving 94 % accuracy, deployed as a Flask micro-service with a React front-end.',
     href: '#',
+    github: 'https://github.com/',
   },
   {
     id: 4,
@@ -45,40 +48,44 @@ const PROJECTS = [
     description:
       'A real-time collaborative task manager with drag-and-drop boards, live notifications via WebSockets, and a Prisma/PostgreSQL backend.',
     href: '#',
-  },
-  {
-    id: 5,
-    url: project5,
-    tag: 'Mobile · React Native',
-    title: 'Fitness Tracker',
-    description:
-      'A cross-platform fitness tracking app built with React Native, featuring workout logging, progress charts, and a custom REST API backend.',
-    href: '#',
-  },
+    github: 'https://github.com/',
+  }
 ];
 
 /* ── Horizontal scroll carousel ── */
 const HorizontalCarousel = () => {
-  const [transformRange, setTransformRange] = useState(['20%', '-40%']);
+  const targetRef = useRef(null);
+  const railRef = useRef(null);
+  const viewportRef = useRef(null);
+
+  const [transformRange, setTransformRange] = useState(['20%', '-25%']);
 
   useEffect(() => {
     const updateRange = () => {
-      // Card rail is approx 1612px wide. We want to translate it enough so the 
-      // last card is fully visible on any screen size.
-      if (window.innerWidth <= 850) {
-        // On mobile, the rail is much wider than the screen, so we need to move it further
-        setTransformRange(['5%', '-1400px']);
+      if (window.innerWidth <= 1024) {
+        if (railRef.current && viewportRef.current) {
+          const railWidth = railRef.current.scrollWidth;
+          const viewportWidth = viewportRef.current.clientWidth;
+          // Clean padding from the right edge when the last card arrives
+          const padding = window.innerWidth <= 600 ? 16 : 32;
+          const maxScroll = Math.max(0, railWidth - viewportWidth + padding);
+          setTransformRange(['0px', `-${maxScroll}px`]);
+        } else {
+          // Dynamic fallback based on screen width
+          const estScroll = Math.max(0, 1292 - (window.innerWidth - 20) + 16);
+          setTransformRange(['0px', `-${estScroll}px`]);
+        }
       } else {
-        // Desktop default
-        setTransformRange(['20%', '-40%']);
+        // Desktop / Laptop (preserved settings)
+        setTransformRange(['20%', '-25%']);
       }
     };
+
     updateRange();
     window.addEventListener('resize', updateRange);
     return () => window.removeEventListener('resize', updateRange);
   }, []);
 
-  const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
 
   /* Maps scroll 0→1 to horizontal translation of the card rail. */
@@ -93,8 +100,8 @@ const HorizontalCarousel = () => {
           <p className="projects-subtitle">A selection of things I've built</p>
         </div>
 
-        <div className="projects-rail-viewport">
-          <motion.div className="projects-rail" style={{ x }}>
+        <div ref={viewportRef} className="projects-rail-viewport">
+          <motion.div ref={railRef} className="projects-rail" style={{ x }}>
             {PROJECTS.map((card) => (
               <ProjectCard key={card.id} card={card} />
             ))}

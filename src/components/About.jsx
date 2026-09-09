@@ -91,6 +91,9 @@ const About = () => {
   return (
     <div ref={containerRef} className="about-scroll-container" id="about">
       <div className="about-sticky">
+        {/* ── Dot background — sits inside sticky so it doesn't scroll ── */}
+        <div className="halftone-bg" aria-hidden="true"></div>
+
         <section className="about-section">
           {/* Left: ABOUT ME title + image */}
           <div className="title-container">

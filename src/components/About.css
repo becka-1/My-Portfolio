@@ -7,13 +7,29 @@
   scroll-margin-top: 80px;
 }
 
+/* ── Dot pattern background ── */
+.halftone-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  /* Uniform small dots */
+  background-image: radial-gradient(var(--border-medium) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: center center;
+}
+
 /* ── Content wrapper ── */
 .about-sticky {
   position: relative;
   display: flex;
   align-items: center;
-  background: var(--bg-secondary);
+  background: transparent;
+  /* Changed from solid so dots show through */
   width: 100%;
+  z-index: 1;
+  /* Ensure content is above the background pattern */
 }
 
 /* ── Section layout ── */

@@ -20,11 +20,6 @@
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  position: relative;
-  box-sizing: border-box;
 }
 
 .hamburger-wrapper .menuButton:active {
@@ -44,24 +39,24 @@
   background: var(--color-text-primary);
   border-radius: 999px;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.25s ease,
-              background-color 0.3s ease;
+    width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease,
+    background-color 0.3s ease;
   transform-origin: center;
 }
 
-.hamburger-wrapper input[type="checkbox"]:checked ~ span.top {
+.hamburger-wrapper input[type="checkbox"]:checked~span.top {
   transform: translateY(0.6em) rotate(45deg);
   width: 2.3em;
 }
 
-.hamburger-wrapper input[type="checkbox"]:checked ~ span.bot {
+.hamburger-wrapper input[type="checkbox"]:checked~span.bot {
   transform: translateY(-0.6em) rotate(-45deg);
   width: 2.3em;
   box-shadow: 0 0 8px var(--color-text-muted);
 }
 
-.hamburger-wrapper input[type="checkbox"]:checked ~ span.mid {
+.hamburger-wrapper input[type="checkbox"]:checked~span.mid {
   transform: translateX(-1.2em);
   opacity: 0;
 }

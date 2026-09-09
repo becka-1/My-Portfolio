@@ -40,7 +40,7 @@ export default function Contact() {
     const formData = new FormData(e.target);
 
     // ⚠️ Replace this with your actual Web3Forms access key
-    formData.append("access_key", "806038f9-a3e6-4482-bae8-e26770f53f25");
+    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
 
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);

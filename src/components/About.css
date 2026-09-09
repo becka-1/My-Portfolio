@@ -100,13 +100,14 @@
   height: 0.86em;
   margin-top: 0;
   transform: translateY(0.04em);
+  border-radius: 5px;
 }
 
 .image-container img {
   height: 100%;
   width: 100%;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center 20%;
   opacity: 1;
 }

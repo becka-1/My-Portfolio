@@ -50,8 +50,8 @@ const FlipLink = ({ children, href, isActive, onClick, delay = 0 }) => {
             key={i}
             className="nav-link-span"
             variants={{
-              initial: { y: 0 },
-              hovered: { y: "-100%" },
+              initial: { y: 0, opacity: 1 },
+              hovered: { y: "-100%", opacity: 0 },
             }}
             transition={{
               duration: DURATION,
@@ -71,8 +71,8 @@ const FlipLink = ({ children, href, isActive, onClick, delay = 0 }) => {
             key={i}
             className="nav-link-span"
             variants={{
-              initial: { y: "100%" },
-              hovered: { y: 0 },
+              initial: { y: "100%", opacity: 0 },
+              hovered: { y: 0, opacity: 1 },
             }}
             transition={{
               duration: DURATION,
@@ -117,17 +117,19 @@ const MobileMenuLink = ({ children, href, isActive, onClick, index }) => {
   };
 
   const topLetterVariants = {
-    hidden: { y: '100%' },
+    hidden: { y: '100%', opacity: 0 },
     visible: {
       y: isActive ? '-100%' : 0,
+      opacity: isActive ? 0 : 1,
       transition: { type: 'spring', damping: 14, stiffness: 90 }
     }
   };
 
   const bottomLetterVariants = {
-    hidden: { y: '100%' },
+    hidden: { y: '100%', opacity: 0 },
     visible: {
       y: isActive ? 0 : '100%',
+      opacity: isActive ? 1 : 0,
       transition: { type: 'spring', damping: 14, stiffness: 90 }
     }
   };
@@ -147,7 +149,7 @@ const MobileMenuLink = ({ children, href, isActive, onClick, index }) => {
             key={i}
             className="nav-link-span"
             variants={isTapped ? undefined : topLetterVariants}
-            animate={isTapped ? { y: "-100%" } : undefined}
+            animate={isTapped ? { y: "-100%", opacity: 0 } : undefined}
             transition={isTapped ? { duration: DURATION, ease: "easeInOut", delay: STAGGER * i } : undefined}
           >
             {l}
@@ -161,7 +163,7 @@ const MobileMenuLink = ({ children, href, isActive, onClick, index }) => {
             key={i}
             className="nav-link-span"
             variants={isTapped ? undefined : bottomLetterVariants}
-            animate={isTapped ? { y: 0 } : undefined}
+            animate={isTapped ? { y: 0, opacity: 1 } : undefined}
             transition={isTapped ? { duration: DURATION, ease: "easeInOut", delay: STAGGER * i } : undefined}
           >
             {l}
@@ -218,9 +220,36 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 850 && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMenuOpen]);
+
+  const handleLogoClick = () => {
+    if (isMenuOpen) setIsMenuOpen(false);
+    const target = document.getElementById('home');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className="navbar">
-      <div className="navbar-logo">
+      <div className="navbar-logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
         <MagneticButton>Bereket</MagneticButton>
       </div>
 

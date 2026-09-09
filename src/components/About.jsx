@@ -4,7 +4,7 @@ import Profile from '../assets/Profile Photo/profile.jpg';
 import './About.css';
 
 /* ── Text reveal paragraphs ── */
-const BIO = "Dedicated Software Engineering student with 2+ years of experience in web development and strong interest in software development, full-stack web applications and artificial intelligence. I build end-to-end web applications, from designing responsive and user-friendly interfaces to developing backend APIs and managing databases.";
+const BIO = "Dedicated Computer Science and Engineering student with 2+ years of experience in web development and strong interest in software development, full-stack web applications and artificial intelligence. I build end-to-end web applications, from designing responsive and user-friendly interfaces to developing backend APIs and managing databases.";
 const SKILLS = "Python · JavaScript · C++ · SQL · React · Node.js · Express.js · REST APIs · PostgreSQL · HTML · CSS · Tailwind · Git";
 
 /* ── Character-level opacity reveal driven by natural scroll progress ── */
@@ -106,8 +106,8 @@ const About = () => {
                   className="overlay"
                   initial={{ x: '0%' }}
                   whileInView={{ x: '100%' }}
-                  viewport={{ once: false, margin: "0px 0px -30% 0px" }}
-                  transition={{ duration: 0.9, ease: [0.77, 0, 0.175, 1] }}
+                  viewport={{ once: false, margin: "0px 0px -20% 0px" }}
+                  transition={{ duration: 0.5, ease: [0.77, 0, 0.175, 1] }}
                 />
               </div>
             </h1>

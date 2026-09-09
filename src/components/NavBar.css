@@ -27,6 +27,8 @@
     letter-spacing: 0.15em;
     color: var(--color-secondary);
     cursor: default;
+    position: relative;
+    z-index: 101;
 }
 
 .navbar-right {
@@ -79,17 +81,21 @@
 .nav-link-top,
 .nav-link-bottom {
     display: block;
+    line-height: 1;
 }
 
 .nav-link-bottom {
     position: absolute;
     inset: 0;
     color: var(--color-accent);
+    pointer-events: none;
 }
 
 /* Each letter */
 .nav-link-span {
     display: inline-block;
+    vertical-align: top;
+    line-height: 1;
 }
 
 /* ── Mobile menu button (Hidden on desktop) ── */
@@ -127,33 +133,50 @@
         left: 0;
         width: 100%;
         height: 100vh;
+        height: 100dvh;
         background: var(--color-accent);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: clamp(18px, 4vh, 36px);
+        padding: calc(75px + env(safe-area-inset-top, 0px)) 20px calc(24px + env(safe-area-inset-bottom, 0px));
+        box-sizing: border-box;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
         z-index: 99;
+        pointer-events: none;
 
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.4s ease, visibility 0.4s ease, background-color 0.3s ease;
+        transition: opacity 0.35s ease, visibility 0.35s ease, background-color 0.3s ease;
+    }
+
+    /* Auto margin spacers vertically center links when height permits, and collapse when scrolling */
+    .navbar-links.mobile-only::before,
+    .navbar-links.mobile-only::after {
+        content: '';
+        margin: auto;
+        pointer-events: none;
     }
 
     .navbar-links.mobile-only.mobile-open {
         opacity: 1;
         visibility: visible;
+        pointer-events: auto;
     }
 
     /* Light Mode (Default) - Links black, background accent */
     .navbar-links.mobile-only .nav-link,
     .navbar-links.mobile-only .nav-link.active {
-        font-size: 2.5rem;
-        /* Large touch targets */
+        font-size: clamp(1.6rem, min(7vw, 5.5vh), 2.5rem);
+        padding: 0 16px;
         overflow: hidden;
-        /* For the entrance stagger reveal */
         color: #000000;
+        text-align: center;
+        max-width: 90vw;
+        letter-spacing: 0.08em;
     }
 
     .navbar-links.mobile-only .nav-link-bottom {
@@ -172,5 +195,72 @@
 
     .dark .navbar-links.mobile-only .nav-link-bottom {
         color: #ffffff;
+    }
+}
+
+/* ── Landscape Mobile & Short Heights (max-height: 600px) ── */
+@media (max-width: 850px) and (max-height: 600px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .navbar-links.mobile-only {
+        gap: clamp(10px, 2.5vh, 16px);
+        padding: calc(56px + env(safe-area-inset-top, 0px)) 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .navbar-links.mobile-only .nav-link,
+    .navbar-links.mobile-only .nav-link.active {
+        font-size: clamp(1.2rem, 5.2vh, 1.7rem);
+        padding: 0 12px;
+    }
+}
+
+/* ── Ultra-short Heights (max-height: 420px, landscape phone) ── */
+@media (max-width: 850px) and (max-height: 420px) {
+    .navbar {
+        padding: 8px 16px;
+    }
+
+    .navbar-links.mobile-only {
+        gap: clamp(6px, 1.8vh, 10px);
+        padding: calc(46px + env(safe-area-inset-top, 0px)) 12px calc(10px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .navbar-links.mobile-only .nav-link,
+    .navbar-links.mobile-only .nav-link.active {
+        font-size: clamp(1.05rem, 5vh, 1.3rem);
+        padding: 0 8px;
+    }
+}
+
+/* ── Narrow Mobile Widths (max-width: 480px) ── */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 12px 18px;
+    }
+
+    .navbar-logo {
+        font-size: 1.25rem;
+    }
+
+    .navbar-controls {
+        gap: 10px;
+    }
+}
+
+/* ── Ultra-narrow Screens (max-width: 340px) ── */
+@media (max-width: 340px) {
+    .navbar {
+        padding: 10px 12px;
+    }
+
+    .navbar-logo {
+        font-size: 1.1rem;
+        letter-spacing: 0.08em;
+    }
+
+    .navbar-controls {
+        gap: 6px;
     }
 }

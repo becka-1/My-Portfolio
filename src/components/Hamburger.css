@@ -1,5 +1,9 @@
 .hamburger-wrapper {
-  font-size: 13px; /* scales the em units in the button */
+  font-size: clamp(11px, 2.8vw, 13px);
+  /* scales the em units in the button across all screen sizes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hamburger-wrapper .menuButton {
@@ -7,23 +11,25 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 13%;
-  width: 3.5em;
-  height: 3.5em;
-  border-radius: 0.5em;
+  gap: 0.38em;
+  width: 3.3em;
+  height: 3.3em;
+  border-radius: 0.6em;
   background: var(--color-dominant);
-  border: 1px solid var(--color-dominant);
-  transition: all .3s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-subtle);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   cursor: pointer;
-}
-
-.hamburger-wrapper .menuButton:hover {
-  border: 1px solid var(--color-accent);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .hamburger-wrapper .menuButton:active {
-  box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(0.93);
+  box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.12);
 }
 
 .hamburger-wrapper input[type="checkbox"] {
@@ -33,25 +39,29 @@
 }
 
 .hamburger-wrapper .menuButton span {
-  width: 30px;
-  height: 4px;
+  width: 2em;
+  height: 0.22em;
   background: var(--color-text-primary);
-  border-radius: 100px;
-  transition: 0.3s ease;
+  border-radius: 999px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease,
+              background-color 0.3s ease;
+  transform-origin: center;
 }
 
 .hamburger-wrapper input[type="checkbox"]:checked ~ span.top {
-  transform: translateY(290%) rotate(45deg);
-  width: 40px;
+  transform: translateY(0.6em) rotate(45deg);
+  width: 2.3em;
 }
 
 .hamburger-wrapper input[type="checkbox"]:checked ~ span.bot {
-  transform: translateY(-270%) rotate(-45deg);
-  width: 40px;
-  box-shadow: 0 0 10px var(--color-text-muted);
+  transform: translateY(-0.6em) rotate(-45deg);
+  width: 2.3em;
+  box-shadow: 0 0 8px var(--color-text-muted);
 }
 
 .hamburger-wrapper input[type="checkbox"]:checked ~ span.mid {
-  transform: translateX(-20px);
+  transform: translateX(-1.2em);
   opacity: 0;
 }

@@ -63,7 +63,6 @@
 /* ── Two-column grid ── */
 .contact-grid {
   border-top: 1px solid var(--c-line);
-  border-bottom: 1px solid var(--border-medium);
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: clamp(48px, 9vw, 120px);

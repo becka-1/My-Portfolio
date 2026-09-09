@@ -28,9 +28,7 @@
 }
 
 .hamburger-wrapper input[type="checkbox"] {
-  -webkit-appearance: none;
   display: none;
-  visibility: hidden;
 }
 
 .hamburger-wrapper .menuButton span {

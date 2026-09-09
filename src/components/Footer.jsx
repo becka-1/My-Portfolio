@@ -4,9 +4,7 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer className="footer-container">
-      <div className="footer-top">
-        <h2 className="footer-logo">BEREKET</h2>
-
+      <div className="footer-content">
         <div className="footer-socials">
           <a href="https://github.com/becka-1" target="_blank" rel="noreferrer" aria-label="GitHub">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -34,16 +32,17 @@ const Footer = () => {
             </svg>
           </a>
         </div>
-      </div>
 
-      <div className="footer-bottom">
-        <p className="footer-copy">© {new Date().getFullYear()} Bereket. All rights reserved.</p>
-        <div className="footer-links">
+        <nav className="footer-links" aria-label="Footer Navigation">
           <a href="#home">Home</a>
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
-        </div>
+        </nav>
+      </div>
+
+      <div className="footer-bottom">
+        <p className="footer-copy">© {new Date().getFullYear()} Bereket. All rights reserved.</p>
       </div>
     </footer>
   );

@@ -18,8 +18,8 @@
   background-color: var(--color-dominant);
   background-image:
     radial-gradient(ellipse at center, transparent 30%, var(--color-dominant) 90%),
-    linear-gradient(rgba(15, 87, 42, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 87, 42, 0.12) 1px, transparent 1px);
+    linear-gradient(var(--border-medium) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-medium) 1px, transparent 1px);
   background-size: 100% 100%, 70px 70px, 70px 70px;
   background-position: center center;
   padding: 0 100px;

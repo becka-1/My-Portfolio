@@ -7,9 +7,7 @@ import {
   Phone,
   Send,
 } from 'lucide-react';
-import GithubIcon from '../assets/icons/Github.svg';
-import LinkedInIcon from '../assets/icons/LinkedIn.svg';
-import TelegramIcon from '../assets/icons/Telegram.svg';
+import { GithubIcon, LinkedInIcon, TelegramIcon } from './SocialIcons';
 import './Contact.css';
 
 const socials = [
@@ -116,7 +114,7 @@ export default function Contact() {
             <div className="contact-socials">
               <p className="contact-detail-label">Elsewhere on the internet</p>
               <div className="social-links">
-                {socials.map(({ label, href, icon }) => (
+                {socials.map(({ label, href, icon: Icon }) => (
                   <a
                     className="social-link"
                     href={href}
@@ -125,7 +123,7 @@ export default function Contact() {
                     aria-label={label}
                     key={label}
                   >
-                    <img src={icon} alt="" className="social-icon" />
+                    <Icon size={20} className="social-icon" />
                     <span>{label}</span>
                     <ArrowUpRight size={14} strokeWidth={1.7} className="social-arrow" />
                   </a>

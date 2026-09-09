@@ -5,7 +5,7 @@
   align-items: center;
   width: 100%;
   font-family: 'Lucida Sans Unicode', sans-serif;
-  border-top: 1px solid rgba(15, 87, 42, 0.12);
+  /* border-top: 1px solid var(--border-medium); */
   box-sizing: border-box;
 }
 
@@ -37,7 +37,7 @@
   height: 44px;
   border-radius: 50%;
   background: var(--bg-secondary);
-  border: 1px solid rgba(15, 87, 42, 0.12);
+  border: 1px solid var(--border-medium);
   text-decoration: none;
   transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   -webkit-tap-highlight-color: transparent;
@@ -64,10 +64,10 @@
 /* Hover effects (desktop/pointer) */
 @media (hover: hover) and (pointer: fine) {
   .footer-socials a:hover {
-    background: rgba(15, 87, 42, 0.12);
+    background: var(--border-medium);
     color: var(--color-secondary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(15, 87, 42, 0.08);
+    box-shadow: 0 4px 12px var(--border-subtle);
   }
 
   .footer-links a:hover {
@@ -101,8 +101,8 @@
 /* Bottom bar with copyright */
 .footer-bottom {
   width: 100%;
-  background: rgba(15, 87, 42, 0.04);
-  border-top: 1px solid rgba(15, 87, 42, 0.08);
+  background: var(--hover-subtle);
+  border-top: 1px solid var(--border-subtle);
   padding: 16px 24px;
   display: flex;
   justify-content: center;

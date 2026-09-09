@@ -2,7 +2,7 @@
 .contact-section {
   --c-ink: var(--color-text-primary);
   --c-muted: var(--color-text-secondary);
-  --c-line: rgba(15, 87, 42, 0.12);
+  --c-line: var(--border-medium);
   --c-panel: var(--bg-secondary);
   --c-label: var(--color-text-muted);
 
@@ -63,6 +63,7 @@
 /* ── Two-column grid ── */
 .contact-grid {
   border-top: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--border-medium);
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: clamp(48px, 9vw, 120px);
@@ -152,9 +153,11 @@
 .social-icon {
   width: 20px;
   height: 20px;
-  object-fit: contain;
+  color: var(--color-secondary);
+  opacity: .8;
   flex-shrink: 0;
   display: block;
+  transition: color 0.2s ease;
 }
 
 .social-arrow {
@@ -223,7 +226,7 @@
 
 .contact-form label span {
   color: var(--c-label);
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -249,6 +252,7 @@
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
   color: var(--color-text-light);
+  opacity: 1;
 }
 
 .contact-form input:focus,
@@ -261,7 +265,7 @@
   align-items: center;
   background: var(--color-accent);
   border: 0;
-  color: var(--color-text-primary);
+  color: black;
   cursor: pointer;
   display: inline-flex;
   font-size: 0.88rem;

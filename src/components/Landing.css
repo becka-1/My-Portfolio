@@ -4,8 +4,8 @@
   background-color: var(--color-dominant);
   background-image:
     radial-gradient(ellipse at center, transparent 30%, var(--color-dominant) 90%),
-    linear-gradient(rgba(15, 87, 42, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 87, 42, 0.12) 1px, transparent 1px);
+    linear-gradient(var(--border-medium) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-medium) 1px, transparent 1px);
   background-size: 100% 100%, 70px 70px, 70px 70px;
   background-position: center center;
   font-family: 'Lucida Sans Unicode';
@@ -96,7 +96,7 @@
 .btn-primary {
   padding: 14px 32px;
   background-color: var(--color-accent);
-  color: var(--color-text-primary);
+  color: black;
   border: none;
   border-radius: 4px;
   font-family: 'Lucida Sans Unicode', sans-serif;
@@ -145,7 +145,6 @@
   width: 380px;
   height: 460px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
@@ -219,7 +218,7 @@
 @media (max-width: 850px) {
   .hero {
     flex-direction: column;
-    padding: 120px 24px 60px 24px;
+    padding: 150px 24px 60px 24px;
     gap: 50px;
     text-align: center;
   }
@@ -249,7 +248,7 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: 100px 16px 40px 16px;
+    padding: 130px 16px 40px 16px;
   }
 
 

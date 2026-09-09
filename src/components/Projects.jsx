@@ -62,31 +62,53 @@ const HorizontalCarousel = () => {
 
   useEffect(() => {
     const updateRange = () => {
-      if (window.innerWidth <= 1024) {
-        if (railRef.current && viewportRef.current) {
-          const railWidth = railRef.current.scrollWidth;
-          const viewportWidth = viewportRef.current.clientWidth;
-          // Clean padding from the right edge when the last card arrives
-          const padding = window.innerWidth <= 600 ? 16 : 32;
-          const maxScroll = Math.max(0, railWidth - viewportWidth + padding);
-          setTransformRange(['0px', `-${maxScroll}px`]);
+      if (railRef.current && viewportRef.current) {
+        const railWidth = railRef.current.scrollWidth;
+        const viewportWidth = viewportRef.current.clientWidth;
+        
+        // Calculate padding to ensure cards don't touch the edges
+        // Account for the CSS mask fade on both left and right sides of the viewport
+        let maskLeft = 0;
+        let maskRight = 0;
+        
+        if (window.innerWidth > 1100) {
+          // 8% mask fade + clearance
+          maskLeft = viewportWidth * 0.08;
+          maskRight = (viewportWidth * 0.08) + 40;
+        } else if (window.innerWidth > 850) {
+          // 4% mask fade + clearance
+          maskLeft = viewportWidth * 0.04;
+          maskRight = (viewportWidth * 0.04) + 30;
         } else {
-          // Dynamic fallback based on screen width
-          const estScroll = Math.max(0, 1292 - (window.innerWidth - 20) + 16);
-          setTransformRange(['0px', `-${estScroll}px`]);
+          // No mask on small screens, just standard padding
+          maskLeft = 16;
+          maskRight = window.innerWidth <= 600 ? 16 : 32;
         }
+        
+        const maxScroll = Math.max(0, railWidth - viewportWidth + maskRight);
+        
+        // Start from maskLeft so the first card clears the left fade
+        setTransformRange([`${maskLeft}px`, `-${maxScroll}px`]);
       } else {
-        // Desktop / Laptop (preserved settings)
-        setTransformRange(['20%', '-25%']);
+        // Fallback before refs are attached
+        setTransformRange(['0px', '-1000px']);
       }
     };
 
-    updateRange();
+    // Use a small timeout to ensure DOM is fully rendered before calculation
+    const timeoutId = setTimeout(updateRange, 100);
     window.addEventListener('resize', updateRange);
-    return () => window.removeEventListener('resize', updateRange);
+    
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', updateRange);
+    };
   }, []);
 
-  const { scrollYProgress } = useScroll({ target: targetRef });
+  const { scrollYProgress } = useScroll({ 
+    target: targetRef,
+    offset: ["start start", "end end"]
+  });
 
   /* Maps scroll 0→1 to horizontal translation of the card rail. */
   const x = useTransform(scrollYProgress, [0, 1], transformRange);

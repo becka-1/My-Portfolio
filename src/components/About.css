@@ -74,7 +74,6 @@
   align-items: center;
   width: 100%;
   gap: clamp(4px, 1vw, 8px);
-  /* Reduced gap allows the image to stretch further to the left */
 }
 
 /* ── Profile image ── */
@@ -83,10 +82,8 @@
   position: relative;
   overflow: hidden;
   height: 0.86em;
-  /* Increased to perfectly match text height */
   margin-top: 0;
   transform: translateY(0.04em);
-  /* Adjusted visual bump based on new height */
 }
 
 .image-container img {
@@ -95,6 +92,7 @@
   display: block;
   object-fit: contain;
   object-position: center 20%;
+  opacity: 1;
 }
 
 .overlay {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import MagneticButton from "./MagneticButton";
 import Hamburger from "./Hamburger";
+import ThemeToggle from "./ThemeToggle";
 import './NavBar.css';
 
 const NAV_LINKS = [
@@ -219,7 +220,9 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo"><MagneticButton>Bereket</MagneticButton></div>
+      <div className="navbar-logo">
+        <MagneticButton>Bereket</MagneticButton>
+      </div>
 
       {/* Desktop Links */}
       <div className="navbar-links desktop-only">
@@ -235,6 +238,10 @@ const Navbar = () => {
             </FlipLink>
           );
         })}
+      </div>
+
+      <div className="navbar-right desktop-only">
+        <ThemeToggle />
       </div>
 
       {/* Mobile Links */}
@@ -255,7 +262,8 @@ const Navbar = () => {
         })}
       </div>
 
-      <div className="navbar-controls">
+      <div className="navbar-controls mobile-controls">
+        <ThemeToggle />
         <div className="mobile-menu-btn">
           <Hamburger isOpen={isMenuOpen} toggle={() => setIsMenuOpen(!isMenuOpen)} />
         </div>

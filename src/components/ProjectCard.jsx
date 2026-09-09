@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import GithubIcon from '../assets/icons/Github.svg';
+import { GithubIcon } from './SocialIcons';
 import './ProjectCard.css';
 
 const ProjectCard = ({ card }) => {
@@ -52,7 +52,7 @@ const ProjectCard = ({ card }) => {
             className="project-card__github"
             aria-label={`View ${card.title} source on GitHub`}
           >
-            <img src={GithubIcon} alt="GitHub" className="project-card__github-icon" />
+            <GithubIcon size={20} className="project-card__github-icon" />
           </a>
         </div>
       </div>

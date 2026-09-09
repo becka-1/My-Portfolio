@@ -136,7 +136,6 @@
 .btn-secondary:active {
   transform: scale(0.95);
   background-color: rgba(238, 252, 243, 0.05);
-  /* very subtle background on press */
 }
 
 /* ── Right column: image ── */
@@ -206,8 +205,6 @@
   .hero-content {
     width: 55%;
   }
-
-
 
   .hero-image {
     width: 320px;

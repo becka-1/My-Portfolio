@@ -11,6 +11,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  min-height: 520px; /* Never shrink below card height + heading, avoids crushing cards */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -126,6 +127,42 @@
   .projects-rail-viewport {
     mask-image: none;
     -webkit-mask-image: none;
+  }
+}
+
+/* ── Viewport-height responsiveness ── */
+/* On shorter screens (landscape phones, small browser windows), scale things down */
+@media (max-height: 620px) {
+  .projects-sticky {
+    gap: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .projects-title {
+    font-size: clamp(3rem, 10vh, 5rem);
+  }
+
+  .projects-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .projects-scroll-indicator {
+    display: none; /* Hide hint on very short screens to save vertical space */
+  }
+}
+
+@media (max-height: 450px) {
+  .projects-sticky {
+    gap: 8px;
+  }
+
+  .projects-title {
+    font-size: clamp(2.2rem, 8vh, 3.5rem);
+  }
+
+  .projects-heading {
+    gap: 2px;
   }
 }
 

@@ -2,10 +2,11 @@
 .project-card {
   position: relative;
   width: 300px;
-  height: 360px;
+  /* height auto: card sizes to its content naturally, no scroll by default */
+  height: auto;
   flex-shrink: 0;
   border-radius: 5px;
-  overflow: hidden;
+  overflow: hidden; /* Required for border-radius to clip image corners */
   background: var(--color-dominant);
   border: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
@@ -17,7 +18,7 @@
 .project-card__image-wrap {
   position: relative;
   width: 100%;
-  height: 170px;
+  height: 170px; /* Fixed — does not shrink */
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -42,11 +43,27 @@
 /* ── Text content area ── */
 .project-card__content {
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
   opacity: .8;
   padding: 14px 16px 18px;
+  /* No overflow by default: content sizes the card naturally */
+  overflow-y: visible;
+}
+
+.project-card__content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.project-card__content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-card__content::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
 }
 
 /* Category / technology tag */
@@ -56,6 +73,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-secondary);
+  flex-shrink: 0;
 }
 
 /* Title */
@@ -66,6 +84,7 @@
   letter-spacing: 0.05em;
   color: var(--color-secondary);
   line-height: 1.15;
+  flex-shrink: 0;
 }
 
 /* Description */
@@ -75,12 +94,7 @@
   font-family: 'Lucida Sans Unicode', sans-serif;
   line-height: 1.55;
   color: var(--color-secondary);
-  flex: 1;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
+  flex-grow: 1;
 }
 
 /* ── Actions bottom bar ── */
@@ -88,8 +102,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: auto;
-  padding-top: 4px;
+  padding-top: 8px;
+  flex-shrink: 0;
 }
 
 /* CTA arrow link */
@@ -137,4 +151,31 @@
 
 .project-card__github:active {
   transform: scale(0.92);
+}
+
+/* ── Short viewport: cap card height and enable scroll only when needed ── */
+@media (max-height: 700px) {
+  .project-card {
+    /* Cap the card so it fits inside the short sticky panel */
+    max-height: clamp(260px, 56vh, 360px);
+  }
+
+  .project-card__content {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+
+  .project-card__content::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .project-card__content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .project-card__content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
 }

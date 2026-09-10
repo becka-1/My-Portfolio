@@ -25,8 +25,8 @@ const PROJECTS = [
     title: 'My New Portfolio Website',
     description:
       'A scalable REST API service with JWT authentication, role-based access control, and a PostgreSQL database, fully documented with Swagger.',
-    href: 'https://becka-1.github.io/Portfolio-Website/',
-    github: 'https://github.com/becka-1/Portfolio-Website',
+    href: 'https://bereketmelaku-portfolio.vercel.app/',
+    github: 'https://bereketmelaku-portfolio.vercel.app/',
   },
   {
     id: 3,

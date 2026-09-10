@@ -39,7 +39,6 @@ export default function Contact() {
 
     const formData = new FormData(e.target);
 
-    // ⚠️ Replace this with your actual Web3Forms access key
     formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
 
     const object = Object.fromEntries(formData);
@@ -74,8 +73,6 @@ export default function Contact() {
   return (
     <section className="contact-section" id="contact" aria-labelledby="contact-title">
       <div className="contact-shell">
-
-        {/* ── Centered heading ── */}
         <header className="contact-heading">
           <motion.p className="contact-eyebrow" {...fadeUp(0)}>
             Have a project in mind?
@@ -197,14 +194,7 @@ export default function Contact() {
 
         </div>
 
-        {/* ── Footer bar ── */}
-        <footer className="contact-footer">
-          <span>Available for select freelance projects</span>
-          <span className="contact-status">
-            {/* <i aria-hidden="true" /> */}
-            Currently accepting inquiries
-          </span>
-        </footer>
+
 
       </div>
     </section>

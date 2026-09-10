@@ -1,10 +1,10 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import Profile from '../assets/Profile Photo/profile.jpg';
+import Profile from '../assets/profile photo/profile.jpg';
 import './About.css';
 
 /* ── Text reveal paragraphs ── */
-const BIO = "Dedicated Computer Science and Engineering student with 2+ years of experience in web development and strong interest in software development, full-stack web applications and artificial intelligence. I build end-to-end web applications, from designing responsive and user-friendly interfaces to developing backend APIs and managing databases.";
+const BIO = "Hi, I'm Bereket Melaku, a dedicated Computer Science and Engineering student and Full-Stack Developer with 2+ years of experience in web development and strong interest in software development, full-stack web applications and artificial intelligence. I build end-to-end web applications, from designing responsive and user-friendly interfaces to developing backend APIs and managing databases.";
 const SKILLS = "Python · JavaScript · C++ · SQL · React · Node.js · Express.js · REST APIs · PostgreSQL · HTML · CSS · Tailwind · Git";
 
 /* ── Character-level opacity reveal driven by natural scroll progress ── */

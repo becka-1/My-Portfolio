@@ -143,16 +143,13 @@
   flex-shrink: 0;
   width: 380px;
   height: 460px;
-  border-radius: 12px;
-  overflow: hidden;
 }
 
 .hero-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  transform: scaleX(-1);
 }
 
 /* ── Waving hand icon ── */

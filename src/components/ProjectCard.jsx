@@ -23,6 +23,7 @@ const ProjectCard = ({ card }) => {
 
         <div className="project-card__actions">
           <motion.a
+            target="_blank"
             href={card.href}
             className="project-card__cta"
             whileHover={{ x: 4 }}

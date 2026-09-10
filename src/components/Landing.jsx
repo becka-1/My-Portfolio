@@ -1,7 +1,7 @@
 import { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import MagneticButton from './MagneticButton';
-import Profile from '../assets/Profile Photo/profile.png';
+import Profile from '../assets/profile photo/profile.png';
 import WaveIcon from '../assets/icons/wave-test.svg';
 import './Landing.css';
 
@@ -45,7 +45,6 @@ const Landing = () => {
   const waveRef = useRef(null);
   const isWaving = useRef(false);
 
-  /* keyframes matching the CSS @keyframes wave-hand */
   const WAVE_KEYFRAMES = [
     { transform: 'rotate(0deg)' },
     { transform: 'rotate(20deg)', offset: 0.15 },
@@ -67,7 +66,7 @@ const Landing = () => {
     });
 
     anim.onfinish = () => {
-      anim.cancel(); // reset transform so next hover starts clean
+      anim.cancel();
       isWaving.current = false;
     };
   }, []);
@@ -95,7 +94,7 @@ const Landing = () => {
             <img
               ref={waveRef}
               src={WaveIcon}
-              alt=""
+              alt="Waving Hand"
               className="wave-icon"
               onMouseEnter={handleWaveHover}
             />
@@ -109,7 +108,6 @@ const Landing = () => {
             animate="visible"
           >
             {LETTERS.map((letter, i) => (
-              /* Clip wrapper — hides the letter below the baseline until it slides up */
               <span key={i} className="letter-clip">
                 <motion.span variants={letterVariants}>
                   {letter === ' ' ? '\u00A0' : letter}
@@ -125,7 +123,7 @@ const Landing = () => {
             animate="visible"
             custom={4}
           >
-            I build full-stack applications with a focus on performance and scalability.
+            I build end-to-end full-stack web applications with a focus on performance and scalability.
           </motion.p>
 
           <motion.div
@@ -154,7 +152,6 @@ const Landing = () => {
           </motion.div>
         </div>
 
-        {/* Right: image placeholder — replace with your image */}
         <motion.div
           className="hero-image"
           variants={fadeUp}
@@ -162,8 +159,7 @@ const Landing = () => {
           animate="visible"
           custom={3.7}
         >
-          {/* Add your <img> here */}
-          <img src={Profile} alt="" />
+          <img src={Profile} alt="bereket-profile" />
         </motion.div>
       </div>
     </div>

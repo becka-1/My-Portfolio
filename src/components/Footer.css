@@ -1,3 +1,47 @@
+/* ── Availability Banner ── */
+.footer-availability {
+  border-bottom: 1px solid var(--border-medium);
+  color: var(--color-text-muted);
+  display: flex;
+  font-size: 10px;
+  font-weight: 600;
+  justify-content: space-between;
+  letter-spacing: 0.1em;
+  padding: 18px 24px;
+  text-transform: uppercase;
+  width: 100%;
+  max-width: 1160px;
+  box-sizing: border-box;
+}
+
+.footer-status {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+}
+
+.footer-status i {
+  background: var(--color-accent);
+  border-radius: 50%;
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (max-width: 800px) {
+  .footer-availability {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
 .footer-container {
   background-color: var(--color-dominant);
   display: flex;

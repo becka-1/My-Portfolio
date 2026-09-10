@@ -4,6 +4,14 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer className="footer-container">
+      <div className="footer-availability">
+        <span>Available for select freelance projects</span>
+        <span className="footer-status">
+          {/* <i aria-hidden="true" /> */}
+          Currently accepting inquiries
+        </span>
+      </div>
+
       <div className="footer-content">
         <div className="footer-socials">
           <a href="https://github.com/becka-1" target="_blank" rel="noreferrer" aria-label="GitHub">

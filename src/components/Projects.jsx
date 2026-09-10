@@ -6,50 +6,48 @@ import './Projects.css';
 import project1 from '../assets/projects/project1.jpg';
 import project2 from '../assets/projects/project2.jpg';
 import project3 from '../assets/projects/project3.jpg';
-import project4 from '../assets/projects/project4.jpg';
-import project5 from '../assets/projects/project5.jpg';
 
 const PROJECTS = [
   {
     id: 1,
     url: project1,
-    tag: 'Full-Stack · React · Node.js',
-    title: 'Portfolio Website',
+    tag: 'Full-Stack · React · Node.js · PostgreSQL · Socket.io · OAuth',
+    title: 'Local Services Marketplace',
     description:
-      'A personal portfolio built with React and Framer Motion, featuring animated sections, a sticky scroll text reveal, and a horizontal project carousel.',
-    href: '#',
-    github: 'https://github.com/',
+      'A full-stack marketplace that connects users with local service providers. Users can discover and search for services, manage listings and profiles, submit service requests, track request status, and communicate through real-time messaging.',
+    href: 'https://github.com/becka-1/local-services-marketplace-v2',
+    github: 'https://github.com/becka-1/local-services-marketplace-v2',
   },
   {
     id: 2,
     url: project2,
-    tag: 'Backend · Express · PostgreSQL',
-    title: 'REST API Platform',
+    tag: 'Front-End · React · framer-motion · CSS',
+    title: 'My New Portfolio Website',
     description:
       'A scalable REST API service with JWT authentication, role-based access control, and a PostgreSQL database, fully documented with Swagger.',
-    href: '#',
-    github: 'https://github.com/',
+    href: 'https://becka-1.github.io/Portfolio-Website/',
+    github: 'https://github.com/becka-1/Portfolio-Website',
   },
   {
     id: 3,
     url: project3,
-    tag: 'AI · Python · TensorFlow',
-    title: 'Image Classifier',
+    tag: 'Front-End · HTML · Vanilla CSS · Vanilla JavaScript',
+    title: 'My Last Portfolio Website',
     description:
       'A deep-learning image classifier trained on a custom dataset achieving 94 % accuracy, deployed as a Flask micro-service with a React front-end.',
-    href: '#',
-    github: 'https://github.com/',
+    href: 'https://becka-1.github.io/Portfolio-Website/',
+    github: 'https://github.com/becka-1/Portfolio-Website',
   },
-  {
-    id: 4,
-    url: project4,
-    tag: 'Full-Stack · Next.js · Prisma',
-    title: 'Task Manager App',
-    description:
-      'A real-time collaborative task manager with drag-and-drop boards, live notifications via WebSockets, and a Prisma/PostgreSQL backend.',
-    href: '#',
-    github: 'https://github.com/',
-  }
+  // {
+  //   id: 4,
+  //   url: project4,
+  //   tag: 'Full-Stack · Next.js · Prisma',
+  //   title: 'Task Manager App',
+  //   description:
+  //     'A real-time collaborative task manager with drag-and-drop boards, live notifications via WebSockets, and a Prisma/PostgreSQL backend.',
+  //   href: '#',
+  //   github: 'https://github.com/',
+  // }
 ];
 
 /* ── Horizontal scroll carousel ── */
@@ -65,12 +63,12 @@ const HorizontalCarousel = () => {
       if (railRef.current && viewportRef.current) {
         const railWidth = railRef.current.scrollWidth;
         const viewportWidth = viewportRef.current.clientWidth;
-        
+
         // Calculate padding to ensure cards don't touch the edges
         // Account for the CSS mask fade on both left and right sides of the viewport
         let maskLeft = 0;
         let maskRight = 0;
-        
+
         if (window.innerWidth > 1100) {
           // 8% mask fade + clearance
           maskLeft = viewportWidth * 0.08;
@@ -84,11 +82,15 @@ const HorizontalCarousel = () => {
           maskLeft = 16;
           maskRight = window.innerWidth <= 600 ? 16 : 32;
         }
-        
-        const maxScroll = Math.max(0, railWidth - viewportWidth + maskRight);
-        
-        // Start from maskLeft so the first card clears the left fade
-        setTransformRange([`${maskLeft}px`, `-${maxScroll}px`]);
+
+        // Start further right, but don't travel as far left
+        const startTravel = window.innerWidth > 850 ? 250 : 100;
+        const endTravel = window.innerWidth > 850 ? 50 : 20; // Reduced this so it doesn't go too far left
+
+        const maxScroll = Math.max(0, railWidth - viewportWidth + maskRight) + endTravel;
+
+        // Start from maskLeft + startTravel so the cards come in from further right
+        setTransformRange([`${maskLeft + startTravel}px`, `-${maxScroll}px`]);
       } else {
         // Fallback before refs are attached
         setTransformRange(['0px', '-1000px']);
@@ -98,14 +100,14 @@ const HorizontalCarousel = () => {
     // Use a small timeout to ensure DOM is fully rendered before calculation
     const timeoutId = setTimeout(updateRange, 100);
     window.addEventListener('resize', updateRange);
-    
+
     return () => {
       clearTimeout(timeoutId);
       window.removeEventListener('resize', updateRange);
     };
   }, []);
 
-  const { scrollYProgress } = useScroll({ 
+  const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end end"]
   });

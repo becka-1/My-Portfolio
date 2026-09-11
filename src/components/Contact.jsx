@@ -39,10 +39,10 @@ export default function Contact() {
     setIsSubmitting(true);
     setErrorMessage('');
 
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || import.meta.env.WEB3FORMS_ACCESS_KEY;
 
     if (!accessKey) {
-      console.error("VITE_WEB3FORMS_ACCESS_KEY is missing. Please add it to your environment variables (e.g. in Vercel) and redeploy.");
+      console.error("Web3Forms access key is missing. Ensure VITE_WEB3FORMS_ACCESS_KEY is set in Vercel Environment Variables and redeploy.");
       setErrorMessage("Contact form configuration error: Missing Web3Forms access key.");
       setIsSubmitting(false);
       return;

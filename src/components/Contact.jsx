@@ -32,39 +32,48 @@ const fadeUp = (delay = 0) => ({
 export default function Contact() {
   const [sent, setSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage('');
 
-    const formData = new FormData(e.target);
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
-    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
+    if (!accessKey) {
+      console.error("VITE_WEB3FORMS_ACCESS_KEY is missing. Please add it to your environment variables (e.g. in Vercel) and redeploy.");
+      setErrorMessage("Contact form configuration error: Missing Web3Forms access key.");
+      setIsSubmitting(false);
+      return;
+    }
 
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    const formElement = e.target;
+    const formData = new FormData(formElement);
+    formData.append("access_key", accessKey);
 
     try {
+      // Send directly as FormData (multipart/form-data).
+      // Web3Forms recommends native FormData because it avoids CORS preflight (OPTIONS) requests.
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: json
+        body: formData
       });
 
       const data = await res.json();
 
       if (data.success) {
         setSent(true);
-        e.target.reset();
-        setTimeout(() => setSent(false), 3000);
+        setErrorMessage('');
+        formElement.reset();
+        setTimeout(() => setSent(false), 4000);
       } else {
         console.error("Form submission failed", data);
+        setErrorMessage(data.message || "Something went wrong. Please try again or reach out directly.");
       }
     } catch (error) {
       console.error("Error submitting form", error);
+      setErrorMessage("Failed to send message. Please check your network connection or email directly.");
     } finally {
       setIsSubmitting(false);
     }
@@ -147,7 +156,8 @@ export default function Contact() {
               </label>
             </div>
 
-            {/* Hidden subject for the email title */}
+            {/* Web3Forms spam prevention & subject */}
+            <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
             <input type="hidden" name="subject" value="New message from your Portfolio" />
 
             <label>
@@ -158,12 +168,20 @@ export default function Contact() {
               <span>Tell me a little more</span>
               <textarea id="contact-message" name="message" rows="5" placeholder="Share a few details about your project..." required />
             </label>
+
+            {errorMessage && (
+              <p className="contact-form-error" role="alert">
+                {errorMessage}
+              </p>
+            )}
+
             <motion.button
               id="contact-send"
               type="submit"
               className="contact-submit"
-              whileHover={{ scale: 1.02, translateY: -2 }}
-              whileTap={{ scale: 0.97 }}
+              disabled={isSubmitting}
+              whileHover={isSubmitting ? {} : { scale: 1.02, translateY: -2 }}
+              whileTap={isSubmitting ? {} : { scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
               <AnimatePresence mode="wait">
@@ -176,6 +194,16 @@ export default function Contact() {
                     exit={{ opacity: 0, y: -6 }}
                   >
                     ✓ Message sent!
+                  </motion.span>
+                ) : isSubmitting ? (
+                  <motion.span
+                    key="submitting"
+                    className="contact-btn-inner"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                  >
+                    Sending...
                   </motion.span>
                 ) : (
                   <motion.span

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import MagneticButton from "./MagneticButton";
 import Hamburger from "./Hamburger";
 import ThemeToggle from "./ThemeToggle";
+import logo from "../assets/logo/logo.svg";
 import './NavBar.css';
 
 const NAV_LINKS = [
@@ -250,7 +251,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
-        <MagneticButton>Bereket</MagneticButton>
+        <img src={logo} alt="Bereket Melaku Logo" className="navbar-logo-img" />
       </div>
 
       {/* Desktop Links */}

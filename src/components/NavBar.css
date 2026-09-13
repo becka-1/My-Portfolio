@@ -21,14 +21,18 @@
     flex: 1;
     display: flex;
     justify-content: flex-start;
-    font-family: 'Lucida Sans Unicode', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--color-secondary);
-    cursor: default;
+    align-items: center;
     position: relative;
     z-index: 101;
+}
+
+.navbar-logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .navbar-right {
@@ -244,6 +248,10 @@
         font-size: 1.25rem;
     }
 
+    .navbar-logo-img {
+        height: 32px;
+    }
+
     .navbar-controls {
         gap: 10px;
     }
@@ -258,6 +266,10 @@
     .navbar-logo {
         font-size: 1.1rem;
         letter-spacing: 0.08em;
+    }
+
+    .navbar-logo-img {
+        height: 28px;
     }
 
     .navbar-controls {

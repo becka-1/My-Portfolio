@@ -15,7 +15,7 @@ const PROJECTS = [
     title: 'Local Services Marketplace',
     description:
       'A full-stack marketplace that connects users with local service providers. Users can discover and search for services, manage listings and profiles, submit service requests, track request status, and communicate through real-time messaging.',
-    href: 'https://github.com/becka-1/local-services-marketplace-v2',
+    href: 'https://local-services-marketplace-eta.vercel.app/',
     github: 'https://github.com/becka-1/local-services-marketplace-v2',
   },
   {

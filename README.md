@@ -16,10 +16,9 @@ A modern, interactive, and high-performance personal portfolio website built wit
 - **🎬 Dynamic Intro Animation:** 
 - **↔️ Scroll-Driven Horizontal Showcase:** 
 - **🌗 Theme Switcher:** 
-- **🧲 Micro-Interactions & Magnetic Elements:** 
+- **🧲 Micro-Interactions:** 
 - **📬 Serverless Contact Form:** 
-- **📱 Fully Responsive:** 
-- **🚀 Performance & SEO:** 
+- **📱 Fully Responsive Design:** 
 
 ---
 

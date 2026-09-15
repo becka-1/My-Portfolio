@@ -21,10 +21,10 @@ const PROJECTS = [
   {
     id: 2,
     url: project2,
-    tag: 'Front-End · React · framer-motion · CSS',
+    tag: 'Front-End · React · Framer Motion · CSS',
     title: 'My New Portfolio Website',
     description:
-      'A scalable REST API service with JWT authentication, role-based access control, and a PostgreSQL database, fully documented with Swagger.',
+      'A modern, interactive developer portfolio built with React and Framer Motion. Features a scroll-driven horizontal project carousel, smooth intro animations, dynamic dark/light theme switching, magnetic button interactions, and responsive design.',
     href: 'https://bereketmelaku-portfolio.vercel.app/',
     github: 'https://bereketmelaku-portfolio.vercel.app/',
   },
@@ -34,7 +34,7 @@ const PROJECTS = [
     tag: 'Front-End · HTML · Vanilla CSS · Vanilla JavaScript',
     title: 'My Last Portfolio Website',
     description:
-      'A deep-learning image classifier trained on a custom dataset achieving 94 % accuracy, deployed as a Flask micro-service with a React front-end.',
+      'A responsive personal portfolio crafted with semantic HTML5, CSS3, and Vanilla JavaScript. Features a custom corner-accent layout, slide-out drawer navigation with blur overlay, Swiper.js project slider, and an integrated contact form.',
     href: 'https://becka-1.github.io/Portfolio-Website/',
     github: 'https://github.com/becka-1/Portfolio-Website',
   },

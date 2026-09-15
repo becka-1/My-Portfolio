@@ -26,7 +26,7 @@ const PROJECTS = [
     description:
       'A modern, interactive developer portfolio built with React and Framer Motion. Features a scroll-driven horizontal project carousel, smooth intro animations, dynamic dark/light theme switching, smooth buttons and links interactions, and responsive design.',
     href: 'https://bereketmelaku-portfolio.vercel.app/',
-    github: 'https://bereketmelaku-portfolio.vercel.app/',
+    github: 'https://github.com/becka-1/My-Portfolio',
   },
   {
     id: 3,
@@ -38,16 +38,6 @@ const PROJECTS = [
     href: 'https://becka-1.github.io/Portfolio-Website/',
     github: 'https://github.com/becka-1/Portfolio-Website',
   },
-  // {
-  //   id: 4,
-  //   url: project4,
-  //   tag: 'Full-Stack · Next.js · Prisma',
-  //   title: 'Task Manager App',
-  //   description:
-  //     'A real-time collaborative task manager with drag-and-drop boards, live notifications via WebSockets, and a Prisma/PostgreSQL backend.',
-  //   href: '#',
-  //   github: 'https://github.com/',
-  // }
 ];
 
 /* ── Horizontal scroll carousel ── */
@@ -64,40 +54,30 @@ const HorizontalCarousel = () => {
         const railWidth = railRef.current.scrollWidth;
         const viewportWidth = viewportRef.current.clientWidth;
 
-        // Calculate padding to ensure cards don't touch the edges
-        // Account for the CSS mask fade on both left and right sides of the viewport
         let maskLeft = 0;
         let maskRight = 0;
 
         if (window.innerWidth > 1100) {
-          // 8% mask fade + clearance
           maskLeft = viewportWidth * 0.08;
           maskRight = (viewportWidth * 0.08) + 40;
         } else if (window.innerWidth > 850) {
-          // 4% mask fade + clearance
           maskLeft = viewportWidth * 0.04;
           maskRight = (viewportWidth * 0.04) + 30;
         } else {
-          // No mask on small screens, just standard padding
           maskLeft = 16;
           maskRight = window.innerWidth <= 600 ? 16 : 32;
         }
 
-        // Start further right, but don't travel as far left
         const startTravel = window.innerWidth > 850 ? 250 : 100;
-        const endTravel = window.innerWidth > 850 ? 50 : 20; // Reduced this so it doesn't go too far left
+        const endTravel = window.innerWidth > 850 ? 50 : 20;
 
         const maxScroll = Math.max(0, railWidth - viewportWidth + maskRight) + endTravel;
 
-        // Start from maskLeft + startTravel so the cards come in from further right
         setTransformRange([`${maskLeft + startTravel}px`, `-${maxScroll}px`]);
       } else {
-        // Fallback before refs are attached
         setTransformRange(['0px', '-1000px']);
       }
     };
-
-    // Use a small timeout to ensure DOM is fully rendered before calculation
     const timeoutId = setTimeout(updateRange, 100);
     window.addEventListener('resize', updateRange);
 

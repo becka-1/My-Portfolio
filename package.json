@@ -1,7 +1,9 @@
 {
   "name": "bereket-melaku-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Personal developer portfolio of Bereket Melaku built with React, Vite, and Framer Motion.",
+  "author": "Bereket Melaku",
   "type": "module",
   "scripts": {
     "dev": "vite",

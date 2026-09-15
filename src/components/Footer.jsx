@@ -1,4 +1,3 @@
-import React from 'react';
 import './Footer.css';
 
 const Footer = () => {
@@ -7,7 +6,6 @@ const Footer = () => {
       <div className="footer-availability">
         <span>Available for select freelance projects</span>
         <span className="footer-status">
-          {/* <i aria-hidden="true" /> */}
           Currently accepting inquiries
         </span>
       </div>

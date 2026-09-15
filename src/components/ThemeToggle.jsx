@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import { useId } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import './ThemeToggle.css';
 
@@ -7,7 +7,7 @@ const ThemeToggle = ({ className = '' }) => {
   const maskId = useId();
 
   return (
-    <button 
+    <button
       type="button"
       className={`st-sunMoonThemeToggleBtn ${isDark ? 'is-dark' : ''} ${className}`.trim()}
       onClick={toggleTheme}

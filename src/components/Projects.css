@@ -11,7 +11,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  min-height: 520px; /* Never shrink below card height + heading, avoids crushing cards */
+  min-height: 520px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,15 +67,15 @@
   max-width: 1400px;
   margin: 0 auto;
   mask-image: linear-gradient(to right,
-      transparent 0%,
-      black 8%,
-      black 92%,
-      transparent 100%);
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%);
   -webkit-mask-image: linear-gradient(to right,
-      transparent 0%,
-      black 8%,
-      black 92%,
-      transparent 100%);
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%);
 }
 
 /* ── The moving card strip ── */
@@ -93,22 +93,21 @@
 
   .projects-rail-viewport {
     mask-image: linear-gradient(to right,
-        transparent 0%,
-        black 4%,
-        black 96%,
-        transparent 100%);
+      transparent 0%,
+      black 4%,
+      black 96%,
+      transparent 100%);
     -webkit-mask-image: linear-gradient(to right,
-        transparent 0%,
-        black 4%,
-        black 96%,
-        transparent 100%);
+      transparent 0%,
+      black 4%,
+      black 96%,
+      transparent 100%);
   }
 }
 
 @media (max-width: 850px) {
   .projects-sticky {
     padding: 0 10px;
-    /* Greatly reduce horizontal padding so cards are fully visible */
   }
 
   .projects-heading {
@@ -123,7 +122,6 @@
     font-size: 0.8rem;
   }
 
-  /* Remove side shadows entirely on mobile */
   .projects-rail-viewport {
     mask-image: none;
     -webkit-mask-image: none;
@@ -131,7 +129,6 @@
 }
 
 /* ── Viewport-height responsiveness ── */
-/* On shorter screens (landscape phones, small browser windows), scale things down */
 @media (max-height: 620px) {
   .projects-sticky {
     gap: 16px;
@@ -148,7 +145,7 @@
   }
 
   .projects-scroll-indicator {
-    display: none; /* Hide hint on very short screens to save vertical space */
+    display: none;
   }
 }
 

@@ -3,11 +3,9 @@ import { useRef, useState, useEffect } from 'react';
 import Profile from '../assets/profile photo/profile.jpg';
 import './About.css';
 
-/* ── Text reveal paragraphs ── */
 const BIO = "Hi, I'm Bereket Melaku, a dedicated Computer Science and Engineering student and Full-Stack Developer with 2+ years of experience in web development and strong interest in software development, full-stack web applications and artificial intelligence. I build end-to-end web applications, from designing responsive and user-friendly interfaces to developing backend APIs and managing databases.";
 const SKILLS = "Python · JavaScript · C++ · SQL · React · Node.js · Express.js · REST APIs · PostgreSQL · HTML · CSS · Tailwind · Git";
 
-/* ── Character-level opacity reveal driven by natural scroll progress ── */
 const Char = ({ children, progress, range }) => {
   const opacity = useTransform(progress, (p) => {
     if (p <= range[0]) return 0;
@@ -91,11 +89,9 @@ const About = () => {
   return (
     <div ref={containerRef} className="about-scroll-container" id="about">
       <div className="about-sticky">
-        {/* ── Dot background — sits inside sticky so it doesn't scroll ── */}
         <div className="halftone-bg" aria-hidden="true"></div>
 
         <section className="about-section">
-          {/* Left: ABOUT ME title + image */}
           <div className="title-container">
             <h1 className="title-about">ABOUT</h1>
             <h1 className="title-me">
@@ -113,10 +109,8 @@ const About = () => {
             </h1>
           </div>
 
-          {/* Right: sequential, continuous scroll-driven character reveal */}
           <div ref={textContainerRef} className="text-container">
             <p className="about-skills-label">ABOUT ME</p>
-            {/* Bio text reveals first: 0% → 68% */}
             <RevealText
               text={BIO}
               progress={scrollYProgress}
@@ -124,7 +118,6 @@ const About = () => {
               endOffset={0.68}
             />
 
-            {/* Skills reveal continuously after Bio completes: 70% → 100% */}
             <p className="about-skills-label">Skills &amp; Technologies</p>
             <RevealText
               text={SKILLS}

@@ -1,18 +1,13 @@
-import React, { useRef, useEffect, useId, useState } from 'react';
+import { useRef, useEffect, useId, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
-/**
- * Module-level registry so all MagneticButton instances share one mousemove
- * listener and compete for ownership. Only the closest button in range wins.
- */
-const registry = new Map();   // id → { ref, rawX, rawY, attracted }
+const registry = new Map();
 let globalListenerAttached = false;
 
 function onGlobalMouseMove(e) {
   let winnerId = null;
   let winnerDist = Infinity;
 
-  // 1. Find the closest attracted-or-attractable button
   for (const [id, entry] of registry) {
     const el = entry.ref.current;
     if (!el) continue;
@@ -35,7 +30,6 @@ function onGlobalMouseMove(e) {
     const inRelease = entry.attracted && releaseDist < 1;
 
     if (inAttract || inRelease) {
-      // Euclidean distance to center as tiebreaker
       const euclidean = Math.sqrt(dx * dx + dy * dy);
       if (euclidean < winnerDist) {
         winnerDist = euclidean;
@@ -44,7 +38,6 @@ function onGlobalMouseMove(e) {
     }
   }
 
-  // 2. Apply pull to winner, release all others
   for (const [id, entry] of registry) {
     const el = entry.ref.current;
     if (!el) continue;
@@ -64,19 +57,13 @@ function onGlobalMouseMove(e) {
   }
 }
 
-/**
- * MagneticButton
- *
- * Props:
- *   strength   – how far the element shifts toward cursor (default 0.5)
- *   padding    – attract zone extra px beyond button edge (default 50)
- *   releasePad – release zone extra px — larger = stickier (default 80)
- */
 const MagneticButton = ({ children, strength = 0.5, padding = 50, releasePad = 80 }) => {
   const id = useId();
   const ref = useRef(null);
-  
-  const [isHoverable, setIsHoverable] = useState(true);
+
+  const [isHoverable, setIsHoverable] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(hover: hover) and (pointer: fine)').matches : true
+  );
 
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
@@ -86,8 +73,6 @@ const MagneticButton = ({ children, strength = 0.5, padding = 50, releasePad = 8
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
-    setIsHoverable(mediaQuery.matches);
-
     const handler = (e) => setIsHoverable(e.matches);
     mediaQuery.addEventListener('change', handler);
     return () => mediaQuery.removeEventListener('change', handler);
@@ -96,10 +81,8 @@ const MagneticButton = ({ children, strength = 0.5, padding = 50, releasePad = 8
   useEffect(() => {
     if (!isHoverable) return;
 
-    // Register this button in the shared registry
     registry.set(id, { ref, rawX, rawY, strength, padding, releasePad, attracted: false });
 
-    // Attach the single shared listener only once
     if (!globalListenerAttached) {
       window.addEventListener('mousemove', onGlobalMouseMove);
       globalListenerAttached = true;

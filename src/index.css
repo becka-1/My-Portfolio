@@ -25,11 +25,10 @@
 }
 
 .dark {
-  --color-dominant: #101612; /* Deep charcoal/green */
-  --color-secondary: #86efac; /* Minty green for contrast */
-  --color-accent: #00e755; /* Keep bright neon green */
-
-  --bg-secondary: #1a221d; /* Slightly lighter than dominant */
+  --color-dominant: #101612;
+  --color-secondary: #86efac;
+  --color-accent: #00e755;
+  --bg-secondary: #1a221d;
 
   /* Text colors */
   --color-text-primary: #f0fdf4;
@@ -37,7 +36,7 @@
   --color-text-muted: #7e9987;
   --color-text-light: #526d5c;
 
-  /* Glass/Overlay colors */
+  /* Overlay colors */
   --bg-glass: rgba(16, 22, 18, 0.92);
   --bg-glass-heavy: rgba(16, 22, 18, 0.98);
   --border-subtle: rgba(134, 239, 172, 0.1);

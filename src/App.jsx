@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import IntroAnimation from './components/IntroAnimation';
 import Portfolio from './page/Portfolio';
 
 function App() {
   const [introComplete, setIntroComplete] = useState(false);
 
-  // Prevent scrolling while intro is playing
   useEffect(() => {
     if (!introComplete) {
       document.body.style.overflow = 'hidden';

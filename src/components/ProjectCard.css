@@ -2,11 +2,10 @@
 .project-card {
   position: relative;
   width: 300px;
-  /* height auto: card sizes to its content naturally, no scroll by default */
   height: auto;
   flex-shrink: 0;
   border-radius: 5px;
-  overflow: hidden; /* Required for border-radius to clip image corners */
+  overflow: hidden;
   background: var(--color-dominant);
   border: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
@@ -18,7 +17,7 @@
 .project-card__image-wrap {
   position: relative;
   width: 100%;
-  height: 170px; /* Fixed — does not shrink */
+  height: 170px;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -30,16 +29,6 @@
   display: block;
 }
 
-/* Gradient overlay */
-/* .project-card__image-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-      transparent 30%,
-      rgba(0, 0, 0, 0.55) 100%);
-  pointer-events: none;
-} */
-
 /* ── Text content area ── */
 .project-card__content {
   flex: 1;
@@ -49,7 +38,6 @@
   gap: 6px;
   opacity: .8;
   padding: 14px 16px 18px;
-  /* No overflow by default: content sizes the card naturally */
   overflow-y: visible;
 }
 
@@ -156,7 +144,6 @@
 /* ── Short viewport: cap card height and enable scroll only when needed ── */
 @media (max-height: 700px) {
   .project-card {
-    /* Cap the card so it fits inside the short sticky panel */
     max-height: clamp(260px, 56vh, 360px);
   }
 

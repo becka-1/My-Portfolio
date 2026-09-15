@@ -30,8 +30,15 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
 }
 
 @media (max-width: 800px) {
@@ -49,7 +56,6 @@
   align-items: center;
   width: 100%;
   font-family: 'Lucida Sans Unicode', sans-serif;
-  /* border-top: 1px solid var(--border-medium); */
   box-sizing: border-box;
 }
 

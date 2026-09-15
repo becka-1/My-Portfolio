@@ -53,8 +53,6 @@ export default function Contact() {
     formData.append("access_key", accessKey);
 
     try {
-      // Send directly as FormData (multipart/form-data).
-      // Web3Forms recommends native FormData because it avoids CORS preflight (OPTIONS) requests.
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData

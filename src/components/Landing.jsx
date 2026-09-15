@@ -41,19 +41,19 @@ const fadeUp = {
 const TEXT = "SOFTWARE DEVELOPER";
 const LETTERS = Array.from(TEXT);
 
+const WAVE_KEYFRAMES = [
+  { transform: 'rotate(0deg)' },
+  { transform: 'rotate(20deg)', offset: 0.15 },
+  { transform: 'rotate(-8deg)', offset: 0.30 },
+  { transform: 'rotate(18deg)', offset: 0.45 },
+  { transform: 'rotate(-5deg)', offset: 0.60 },
+  { transform: 'rotate(12deg)', offset: 0.75 },
+  { transform: 'rotate(0deg)' },
+];
+
 const Landing = () => {
   const waveRef = useRef(null);
   const isWaving = useRef(false);
-
-  const WAVE_KEYFRAMES = [
-    { transform: 'rotate(0deg)' },
-    { transform: 'rotate(20deg)', offset: 0.15 },
-    { transform: 'rotate(-8deg)', offset: 0.30 },
-    { transform: 'rotate(18deg)', offset: 0.45 },
-    { transform: 'rotate(-5deg)', offset: 0.60 },
-    { transform: 'rotate(12deg)', offset: 0.75 },
-    { transform: 'rotate(0deg)' },
-  ];
 
   const handleWaveHover = useCallback(() => {
     if (isWaving.current || !waveRef.current) return;

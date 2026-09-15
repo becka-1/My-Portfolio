@@ -1,6 +1,5 @@
 .hamburger-wrapper {
   font-size: clamp(11px, 2.8vw, 13px);
-  /* scales the em units in the button across all screen sizes */
   display: flex;
   align-items: center;
   justify-content: center;

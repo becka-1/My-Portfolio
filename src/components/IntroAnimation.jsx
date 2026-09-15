@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const IntroAnimation = ({ onComplete }) => {
   const [stage, setStage] = useState(0);
 
   useEffect(() => {
-    // 1. Path animation takes 2000ms. Starts exiting after that.
     const fadeOutTimer = setTimeout(() => setStage(2), 3000);
-    // 2. Cleanup parent component after fade finishes
     const completeTimer = setTimeout(() => onComplete(), 4000);
 
     return () => {
@@ -37,7 +35,6 @@ const IntroAnimation = ({ onComplete }) => {
           exit={{ y: "-100%" }}
           transition={{ type: "tween", ease: "ease", duration: .8 }}
         >
-          {/* We wrap the SVG in a responsive container */}
           <motion.div style={{ width: '90%', maxWidth: '800px' }}>
             <motion.svg
               viewBox="0 0 841.9 168.8"

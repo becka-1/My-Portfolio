@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import MagneticButton from "./MagneticButton";
 import Hamburger from "./Hamburger";
 import ThemeToggle from "./ThemeToggle";
 import logo from "../assets/logo/logo.svg";
@@ -16,14 +15,13 @@ const NAV_LINKS = [
 const DURATION = 0.19;
 const STAGGER = 0.025;
 
-const FlipLink = ({ children, href, isActive, onClick, delay = 0 }) => {
+const FlipLink = ({ children, href, isActive, onClick }) => {
   const [isTapped, setIsTapped] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
     setIsTapped(true);
 
-    // Allow animation to play before closing and scrolling
     setTimeout(() => {
       const id = href.replace('#', '');
       const target = document.getElementById(id);
@@ -32,7 +30,7 @@ const FlipLink = ({ children, href, isActive, onClick, delay = 0 }) => {
       }
       if (onClick) onClick();
       setIsTapped(false);
-    }, 400); // 400ms delay for the flip animation
+    }, 400);
   };
 
   return (
@@ -184,13 +182,11 @@ const Navbar = () => {
       const centerY = window.innerHeight / 2;
       let newActiveId = "";
 
-      // Iterate backwards so that deeper sections take priority if they overlap the center
       for (let i = NAV_LINKS.length - 1; i >= 0; i--) {
         const id = NAV_LINKS[i].href.replace("#", "");
         const element = document.getElementById(id);
         if (element) {
           const rect = element.getBoundingClientRect();
-          // Check if this section spans across the middle of the viewport
           if (rect.top <= centerY && rect.bottom >= centerY) {
             newActiveId = id;
             break;
@@ -204,7 +200,6 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Run once after initial render to set the correct active link
     setTimeout(handleScroll, 100);
 
     return () => window.removeEventListener("scroll", handleScroll);

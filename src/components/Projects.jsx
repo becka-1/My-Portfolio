@@ -24,7 +24,7 @@ const PROJECTS = [
     tag: 'Front-End · React · Framer Motion · CSS',
     title: 'My New Portfolio Website',
     description:
-      'A modern, interactive developer portfolio built with React and Framer Motion. Features a scroll-driven horizontal project carousel, smooth intro animations, dynamic dark/light theme switching, magnetic button interactions, and responsive design.',
+      'A modern, interactive developer portfolio built with React and Framer Motion. Features a scroll-driven horizontal project carousel, smooth intro animations, dynamic dark/light theme switching, smooth buttons and links interactions, and responsive design.',
     href: 'https://bereketmelaku-portfolio.vercel.app/',
     github: 'https://bereketmelaku-portfolio.vercel.app/',
   },
@@ -34,7 +34,7 @@ const PROJECTS = [
     tag: 'Front-End · HTML · Vanilla CSS · Vanilla JavaScript',
     title: 'My Last Portfolio Website',
     description:
-      'A responsive personal portfolio crafted with semantic HTML5, CSS3, and Vanilla JavaScript. Features a custom corner-accent layout, slide-out drawer navigation with blur overlay, Swiper.js project slider, and an integrated contact form.',
+      'A responsive personal portfolio crafted with semantic HTML5, CSS3, and Vanilla JavaScript. Features a custom corner-accent layout, slide-out drawer navigation with blur overlay, Swiper.js project slider, and a contact form.',
     href: 'https://becka-1.github.io/Portfolio-Website/',
     github: 'https://github.com/becka-1/Portfolio-Website',
   },

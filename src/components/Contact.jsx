@@ -148,11 +148,11 @@ export default function Contact() {
             <div className="form-row">
               <label>
                 <span>Your name</span>
-                <input id="contact-name" type="text" name="name" placeholder="Jane Smith" required />
+                <input id="contact-name" type="text" name="name" placeholder="John Doe" required />
               </label>
               <label>
                 <span>Email address</span>
-                <input id="contact-email" type="email" name="email" placeholder="jane@company.com" required />
+                <input id="contact-email" type="email" name="email" placeholder="john@gmail.com" required />
               </label>
             </div>
 

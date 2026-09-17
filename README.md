@@ -5,7 +5,7 @@
 [![Vite](https://img.shields.io/badge/Vite-8.2-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-13.1-black?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
 
-A modern, interactive, and high-performance personal portfolio website built with **React**, **Vite**, **Framer Motion**, and **Vanilla CSS**. Designed with rich micro-interactions, dark/light theme support, and a smooth scroll-driven project showcase.
+A modern, interactive, and high-performance personal portfolio website built with **React**, **Vite**, **Framer Motion**, and **Vanilla CSS**. Designed with rich micro-interactions, dark/light theme support, and a smooth scroll-driven animations.
 
 🔗 **Live Website:** [https://bereketmelaku-portfolio.vercel.app/](https://bereketmelaku-portfolio.vercel.app/)
 
@@ -13,12 +13,12 @@ A modern, interactive, and high-performance personal portfolio website built wit
 
 ## ✨ Features
 
-- **🎬 Dynamic Intro Animation:** 
-- **↔️ Scroll-Driven Horizontal Showcase:** 
-- **🌗 Theme Switcher:** 
-- **🧲 Micro-Interactions:** 
-- **📬 Serverless Contact Form:** 
-- **📱 Fully Responsive Design:** 
+- **🎬 Dynamic Intro Animation** 
+- **↔️ Scroll-Driven Horizontal Showcase** 
+- **🌗 Theme Switcher** 
+- **🧲 Micro-Interactions** 
+- **📬 Serverless Contact Form** 
+- **📱 Fully Responsive Design** 
 
 ---
 

@@ -1,7 +1,7 @@
 import { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import MagneticButton from './MagneticButton';
-import Profile from '../assets/profile photo/profile.png';
+import Profile from '../assets/profile photo/profile1.png';
 import WaveIcon from '../assets/icons/wave-test.svg';
 import './Landing.css';
 

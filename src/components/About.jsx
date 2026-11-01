@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import Profile from '../assets/profile photo/profile2.png';
 import './About.css';
 
-const BIO = "Hi, I'm Bereket Melaku, a dedicated Computer Science and Engineering student and Full-Stack Developer with 2+ years of experience in web development and strong interest in software development, full-stack web applications and artificial intelligence. I build end-to-end web applications, from designing responsive and user-friendly interfaces to developing backend APIs and managing databases.";
+const BIO = "Hi, I'm Bereket Melaku, a Full-Stack Developer with 2+ years of experience in web development and strong interest in software development, full-stack web applications and artificial intelligence. I build end-to-end web applications, from designing responsive and user-friendly interfaces to developing backend APIs and managing databases.";
 const SKILLS = "Python · JavaScript · C++ · SQL · React · Node.js · Express.js · REST APIs · PostgreSQL · HTML · CSS · Git · Postman · Docker · Vercel · Render";
 
 const Char = ({ children, progress, range }) => {

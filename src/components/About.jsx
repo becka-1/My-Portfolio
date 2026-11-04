@@ -1,6 +1,8 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import Profile from '../assets/profile photo/profile2.png';
+import { useTheme } from '../context/ThemeContext';
+import profileLight from '../assets/profile photo/profile2.png';
+import profileDark from '../assets/profile photo/profile3.png';
 import './About.css';
 
 const BIO = "Hi, I'm Bereket Melaku, a Full-Stack Developer with 2+ years of experience in web development and strong interest in software development, full-stack web applications and artificial intelligence. I build end-to-end web applications, from designing responsive and user-friendly interfaces to developing backend APIs and managing databases.";
@@ -58,6 +60,7 @@ const RevealText = ({ text, progress, startOffset = 0, endOffset = 1 }) => {
 
 /* ── About Section ── */
 const About = () => {
+  const { isDark } = useTheme();
   const [isStickyCapable, setIsStickyCapable] = useState(true);
 
   useEffect(() => {
@@ -97,7 +100,10 @@ const About = () => {
             <h1 className="title-me">
               ME
               <div className="image-container">
-                <img src={Profile} alt="Bereket" />
+                <img
+                  src={isDark ? profileDark : profileLight}
+                  alt="Bereket"
+                />
                 <motion.div
                   className="overlay"
                   initial={{ x: '0%' }}

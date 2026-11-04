@@ -103,10 +103,29 @@
 .image-container img {
   height: 100%;
   width: 100%;
-  display: block;
   object-fit: cover;
   object-position: center 20%;
   opacity: 1;
+}
+
+/* Light mode (default) */
+.image-container img.about-profile-dark {
+  display: none;
+}
+
+.image-container img.about-profile-light {
+  display: block;
+}
+
+/* Dark mode */
+.dark .image-container img.about-profile-dark,
+:root.dark .image-container img.about-profile-dark {
+  display: block;
+}
+
+.dark .image-container img.about-profile-light,
+:root.dark .image-container img.about-profile-light {
+  display: none;
 }
 
 .overlay {

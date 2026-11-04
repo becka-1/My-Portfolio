@@ -1,6 +1,5 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { useTheme } from '../context/ThemeContext';
 import profileLight from '../assets/profile photo/profile2.png';
 import profileDark from '../assets/profile photo/profile3.png';
 import './About.css';
@@ -60,7 +59,6 @@ const RevealText = ({ text, progress, startOffset = 0, endOffset = 1 }) => {
 
 /* ── About Section ── */
 const About = () => {
-  const { isDark } = useTheme();
   const [isStickyCapable, setIsStickyCapable] = useState(true);
 
   useEffect(() => {
@@ -101,8 +99,14 @@ const About = () => {
               ME
               <div className="image-container">
                 <img
-                  src={isDark ? profileDark : profileLight}
-                  alt="Bereket"
+                  src={profileLight}
+                  alt="Bereket Melaku"
+                  className="about-profile-light"
+                />
+                <img
+                  src={profileDark}
+                  alt="Bereket Melaku"
+                  className="about-profile-dark"
                 />
                 <motion.div
                   className="overlay"
